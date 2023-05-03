@@ -1,0 +1,12 @@
+### 
+POST http://localhost:8081/project/a1
+Content-Type: application/json
+
+{
+    "book" : "book-4",
+    "author" : "author-4"
+}
+
+### 
+GET http://localhost:8081/project/a1?curNum=1&size=1
+Content-Type: application/json
