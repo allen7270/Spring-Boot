@@ -24,17 +24,22 @@ import java.util.List;
 public class ProjectA1Controller extends BaseController {
     @Autowired
     private ProjectA1Dao projectA1Dao;
-    @Autowired
-    private ProjectA1Mapper projectA1Mapper;
+//    @Autowired
+//    private ProjectA1Mapper projectA1Mapper;
+//
+//    @GetMapping
+//    public ResponseEntity<ResultPage<List<ProjectA1Data>>> getAll(QueryPageBean bean) {
+//        PageMethod.startPage(bean.getCurNum(), bean.getSize());
+//        Page<ProjectA1Data> pageInfo = (Page<ProjectA1Data>) this.projectA1Mapper.getAll(bean);
+//        ResultPage<List<ProjectA1Data>> result = new ResultPage<>();
+//        result.setObject(pageInfo.getResult());
+//        result.setPage(PageUtil.getPageBean(pageInfo));
+//        return new ResponseEntity<>(result, HttpStatus.OK);
+//    }
 
     @GetMapping
-    public ResponseEntity<ResultPage<List<ProjectA1Data>>> getAll(QueryPageBean bean) {
-        PageMethod.startPage(bean.getCurNum(), bean.getSize());
-        Page<ProjectA1Data> pageInfo = (Page<ProjectA1Data>) this.projectA1Mapper.getAll(bean);
-        ResultPage<List<ProjectA1Data>> result = new ResultPage<>();
-        result.setObject(pageInfo.getResult());
-        result.setPage(PageUtil.getPageBean(pageInfo));
-        return new ResponseEntity<>(result, HttpStatus.OK);
+    public String a() {
+        return "a";
     }
 
     @PostMapping
@@ -42,7 +47,6 @@ public class ProjectA1Controller extends BaseController {
         ProjectA1 data = new ProjectA1();
         BeanUtils.copyProperties(bean, data);
         this.projectA1Dao.save(data);
-//
         return success(data);
     }
 }

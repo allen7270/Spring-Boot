@@ -1,0 +1,12 @@
+### 
+POST {{HOST}}/user
+Content-Type: application/json
+
+{
+    "username" : "allen",
+    "password" : "allen"
+}
+
+### 
+GET {{HOST}}
+Content-Type: application/json

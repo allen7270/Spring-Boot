@@ -3,8 +3,8 @@ POST http://localhost:8081/project/a1
 Content-Type: application/json
 
 {
-    "book" : "book-4",
-    "author" : "author-4"
+    "book" : "book-5",
+    "author" : "author-5"
 }
 
 ### 
