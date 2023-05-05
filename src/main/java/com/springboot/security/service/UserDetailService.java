@@ -27,7 +27,7 @@ public class UserDetailService implements UserDetailsService {
         }
         com.springboot.project.user.model.bo.User userData = user.get();
         List<GrantedAuthority> auths =
-                AuthorityUtils.commaSeparatedStringToAuthorityList("manager, ROLE_sale");
+                AuthorityUtils.commaSeparatedStringToAuthorityList("manager, ROLE_sale, ROLE_secure1");
         return new User(userData.getUsername(),
                 new BCryptPasswordEncoder().encode(userData.getPassword()), auths);
     }
