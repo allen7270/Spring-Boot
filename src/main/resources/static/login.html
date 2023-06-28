@@ -2,17 +2,121 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>登入</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,700');
+
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+
+        .container {
+            width: 400px;
+            margin: 0 auto;
+            margin-top: 100px;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .container input[type="text"],
+        .container input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 50px;
+            background-color: #f2f2f2;
+            font-size: 16px;
+            color: #333;
+            transition: background-color 0.3s ease;
+        }
+
+        .container input[type="text"]:focus,
+        .container input[type="password"]:focus {
+            background-color: #e0e0e0;
+            outline: none;
+        }
+
+        .container input[type="text"]::placeholder,
+        .container input[type="password"]::placeholder {
+            color: #999;
+        }
+
+        .container input[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .container input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .container::before {
+            content: "";
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            background-color: rgba(76, 175, 80, 0.1);
+            border-radius: 50%;
+            animation: floating 4s linear infinite;
+        }
+
+        .container::after {
+            content: "";
+            position: absolute;
+            bottom: -50px;
+            left: -50px;
+            width: 200px;
+            height: 200px;
+            background-color: rgba(76, 175, 80, 0.1);
+            border-radius: 50%;
+            animation: floating 4s linear infinite;
+        }
+
+        @keyframes floating {
+            0% {
+                transform: translate(0, 0);
+            }
+            50% {
+                transform: translate(0, 20px);
+            }
+            100% {
+                transform: translate(0, 0);
+            }
+        }
+    </style>
 </head>
+
 <body>
+<div class="container">
+    <h2>登入</h2>
     <form action="/login" method="post">
-        username: <input type="text" name="username"/>
-        <br/>
-        password: <input type="text" name="password"/>
-        <br/>
+        <input type="text" name="username" placeholder="使用者名稱" required>
+        <input type="password" name="password" placeholder="密碼" required>
         rememberMe: <input type="checkbox" name="remember-me"/>
-        <br/>
-        <input type="submit" value="login">
+        <input type="submit" value="登入">
     </form>
+</div>
 </body>
+
 </html>

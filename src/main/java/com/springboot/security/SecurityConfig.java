@@ -49,7 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/login.html") // login page
                 .loginProcessingUrl("/login")  // form action
-                .defaultSuccessUrl("/success.html", true).permitAll() // login successful url
+                .defaultSuccessUrl("/home.html", true).permitAll() // login successful url
 
                 .and().authorizeRequests() // verification required
                 .antMatchers("/user").permitAll() // no verification required
