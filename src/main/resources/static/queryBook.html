@@ -70,6 +70,23 @@
             font-weight: bold;
         }
 
+        .button {
+            display: inline-block;
+            background-color: #457745;
+            color: white;
+            text-align: center;
+            padding: 5px 10px;
+            text-decoration: none;
+            border-radius: 100px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+        }
+
     </style>
 </head>
 <body>
@@ -82,6 +99,11 @@
 </div>
 
 <div class="table-container">
+    每頁筆數
+    <button id="submitButton5" class="button" onclick="submitForm(5)">5</button>
+    <button id="submitButton10" class="button" onclick="submitForm(10)">10</button>
+    <button id="submitButton20" class="button" onclick="submitForm(20)">20</button>
+    <button id="submitButton50" class="button" onclick="submitForm(50)">50</button>
     <table id="tableData">
         <thead>
         <tr>
@@ -92,6 +114,11 @@
         </thead>
         <tbody></tbody>
     </table>
+
+    <button id="submitButton1" class="button" onclick="submitPage(1)">1</button>
+    <button id="submitButton2" class="button" onclick="submitPage(2)">2</button>
+    <button id="submitButton3" class="button" onclick="submitPage(3)">3</button>
+
 </div>
 
 <script src="js/queryBook.js"></script>
