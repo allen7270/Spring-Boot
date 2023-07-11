@@ -3,100 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>書籍</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
-            padding: 20px;
-        }
-
-        .navbar {
-            background-color: #333;
-            color: #fff;
-            padding: 10px;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 999;
-        }
-
-        .navbar ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        .navbar li {
-            display: inline-block;
-            margin-right: 10px;
-        }
-
-        .navbar li a {
-            color: #fff;
-            text-decoration: none;
-            padding: 5px 10px;
-        }
-
-        .navbar li a:hover {
-            background-color: #555;
-        }
-
-        .form-container {
-            max-width: 400px;
-            margin: 80px auto 0;
-            background-color: #f7f7f7;
-            border-radius: 5px;
-            padding: 20px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .form-container h2 {
-            text-align: center;
-            margin-top: 0;
-            color: #333;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            color: #666;
-            font-weight: bold;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 5px;
-            font-size: 16px;
-            border-radius: 55px;
-            border: 1px solid #ccc;
-            transition: border-color 0.3s ease;
-        }
-
-        .form-group input:focus {
-            outline: none;
-            border-color: #6ac5d8;
-        }
-
-        .form-group button {
-            background-color: #6ac5d8;
-            color: #fff;
-            border: none;
-            padding: 12px 20px;
-            font-size: 16px;
-            border-radius: 55px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .form-group button:hover {
-            background-color: #59b4c7;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="css/addBook.css">
 </head>
 <body>
 
@@ -125,6 +32,15 @@
             <button type="button" onclick="addBook()">傳送資料</button>
         </div>
     </form>
+</div>
+
+<div id="result" class="result-message"></div>
+
+<div class="modal-overlay" id="modalOverlay">
+    <div class="modal-content">
+        <div id="modalMessage" class="result-message"></div>
+        <button onclick="closeModal()">關閉</button>
+    </div>
 </div>
 
 <script src="js/addBook.js"></script>
