@@ -70,6 +70,10 @@
             font-weight: bold;
         }
 
+        .button-container .button {
+            margin-right: 5px;
+        }
+
         .button {
             display: inline-block;
             background-color: #457745;
@@ -87,6 +91,15 @@
             background-color: #45a049;
         }
 
+        .button-hidden {
+            display: none;
+        }
+
+        .pagination-container {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
     </style>
 </head>
 <body>
@@ -99,11 +112,16 @@
 </div>
 
 <div class="table-container">
-    每頁筆數
-    <button id="submitButton5" class="button" onclick="submitForm(5)">5</button>
-    <button id="submitButton10" class="button" onclick="submitForm(10)">10</button>
-    <button id="submitButton20" class="button" onclick="submitForm(20)">20</button>
-    <button id="submitButton50" class="button" onclick="submitForm(50)">50</button>
+    <div class="button-container">
+        每頁筆數
+        <button id="submitButton5" class="button" onclick="submitForm(5)">5</button>
+        <button id="submitButton10" class="button" onclick="submitForm(10)">10</button>
+        <button id="submitButton20" class="button" onclick="submitForm(20)">20</button>
+        <button id="submitButton50" class="button" onclick="submitForm(50)">50</button>
+    </div>
+
+    <div class="pagination-container" id="paginationButtons"></div>
+
     <table id="tableData">
         <thead>
         <tr>
@@ -114,10 +132,6 @@
         </thead>
         <tbody></tbody>
     </table>
-
-    <button id="submitButton1" class="button" onclick="submitPage(1)">1</button>
-    <button id="submitButton2" class="button" onclick="submitPage(2)">2</button>
-    <button id="submitButton3" class="button" onclick="submitPage(3)">3</button>
 
 </div>
 

@@ -36,6 +36,11 @@ function fetchData(pageNumber, pageSize) {
                 row.appendChild(bookCell);
 
                 tableBody.appendChild(row);
+
+                const pageData = data["page"];
+                const totalPages = pageData.totalPages;
+                addButtons(totalPages);
+
             });
         })
         .catch(error => {
@@ -45,3 +50,18 @@ function fetchData(pageNumber, pageSize) {
 
 // init
 fetchData(page, pageSize);
+
+function addButtons(totalPages) {
+    const paginationContainer = document.getElementById("paginationButtons");
+    paginationContainer.innerHTML = ""; // 清空容器内容
+
+    for (let i = 1; i <= totalPages; i++) {
+        const button = document.createElement("button");
+        button.textContent = i;
+        button.className = "button";
+        button.onclick = function () {
+            submitPage(i);
+        };
+        paginationContainer.appendChild(button);
+    }
+}
