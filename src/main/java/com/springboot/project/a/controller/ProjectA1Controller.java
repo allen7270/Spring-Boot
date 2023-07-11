@@ -11,6 +11,8 @@ import com.springboot.common.util.ResultPage;
 import com.springboot.project.a.model.mapper.ProjectA1Mapper;
 import com.springboot.web.util.BaseController;
 import com.springboot.web.util.PageUtil;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Tag(name = "書籍", description = "book")
 @RestController
 @RequestMapping("project/a1")
 public class ProjectA1Controller extends BaseController {
@@ -27,6 +30,7 @@ public class ProjectA1Controller extends BaseController {
     @Autowired
     private ProjectA1Mapper projectA1Mapper;
 
+    @Operation(summary = "查詢書籍", description = "list")
     @GetMapping
     public ResponseEntity<ResultPage<List<ProjectA1Data>>> getAll(QueryPageBean bean) {
         PageMethod.startPage(bean.getCurNum(), bean.getSize());
@@ -37,6 +41,7 @@ public class ProjectA1Controller extends BaseController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
+    @Operation(summary = "新增書籍")
     @PostMapping
     public ResponseEntity<RestfulBean<Object>> add(@RequestBody ProjectA1Data bean) {
         ProjectA1 data = new ProjectA1();
