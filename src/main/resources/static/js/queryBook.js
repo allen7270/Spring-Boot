@@ -24,13 +24,16 @@ function fetchData(pageNumber, pageSize) {
             data.object.forEach((item, index) => {
                 const row = document.createElement("tr");
                 const indexCell = document.createElement("td");
+                const iconCell = document.createElement("td"); // 添加图标的单元格
                 const authorCell = document.createElement("td");
                 const bookCell = document.createElement("td");
 
+                iconCell.innerHTML = '<i class="fas fa-search"></i>';
                 indexCell.textContent = index + 1;
                 authorCell.textContent = item.author;
                 bookCell.textContent = item.book;
 
+                row.appendChild(iconCell); // 添加图标的单元格到行
                 row.appendChild(indexCell);
                 row.appendChild(authorCell);
                 row.appendChild(bookCell);
