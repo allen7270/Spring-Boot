@@ -11,7 +11,7 @@ function submitPage(value) {
 }
 
 function fetchData(pageNumber, pageSize) {
-    const url = `project/a1?curNum=${pageNumber}&size=${pageSize}`;
+    const url = `project/book?curNum=${pageNumber}&size=${pageSize}`;
 
     fetch(url)
         .then(response => response.json())
@@ -24,7 +24,7 @@ function fetchData(pageNumber, pageSize) {
             data.object.forEach((item, index) => {
                 const row = document.createElement("tr");
                 const indexCell = document.createElement("td");
-                const iconCell = document.createElement("td"); // 添加图标的单元格
+                const iconCell = document.createElement("td");
                 const authorCell = document.createElement("td");
                 const bookCell = document.createElement("td");
 
@@ -33,7 +33,7 @@ function fetchData(pageNumber, pageSize) {
                 authorCell.textContent = item.author;
                 bookCell.textContent = item.book;
 
-                row.appendChild(iconCell); // 添加图标的单元格到行
+                row.appendChild(iconCell);
                 row.appendChild(indexCell);
                 row.appendChild(authorCell);
                 row.appendChild(bookCell);

@@ -1,14 +1,15 @@
-package com.springboot.project.a.controller;
+package com.springboot.project.book.controller;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.page.*;
 import com.springboot.common.util.QueryPageBean;
-import com.springboot.project.a.data.ProjectA1Data;
-import com.springboot.project.a.model.bo.ProjectA1;
-import com.springboot.project.a.model.dao.ProjectA1Dao;
+import com.springboot.project.book.data.BookData;
+import com.springboot.project.book.data.BookData.*;
+import com.springboot.project.book.model.bo.Book;
+import com.springboot.project.book.model.dao.BookDao;
 import com.springboot.common.util.RestfulBean;
 import com.springboot.common.util.ResultPage;
-import com.springboot.project.a.model.mapper.ProjectA1Mapper;
+import com.springboot.project.book.model.mapper.BookMapper;
 import com.springboot.web.util.BaseController;
 import com.springboot.web.util.PageUtil;
 import io.swagger.v3.oas.annotations.Operation;
@@ -23,19 +24,19 @@ import java.util.List;
 
 @Tag(name = "書籍", description = "book")
 @RestController
-@RequestMapping("project/a1")
-public class ProjectA1Controller extends BaseController {
+@RequestMapping("project/book")
+public class BookController extends BaseController {
     @Autowired
-    private ProjectA1Dao projectA1Dao;
+    private BookDao bookDao;
     @Autowired
-    private ProjectA1Mapper projectA1Mapper;
+    private BookMapper projectA1Mapper;
 
     @Operation(summary = "查詢書籍", description = "list")
     @GetMapping
-    public ResponseEntity<ResultPage<List<ProjectA1Data>>> getAll(QueryPageBean bean) {
+    public ResponseEntity<ResultPage<List<BookData>>> getAll(QueryPageBean bean) {
         PageMethod.startPage(bean.getCurNum(), bean.getSize());
-        Page<ProjectA1Data> pageInfo = (Page<ProjectA1Data>) this.projectA1Mapper.getAll(bean);
-        ResultPage<List<ProjectA1Data>> result = new ResultPage<>();
+        Page<BookData> pageInfo = (Page<BookData>) this.projectA1Mapper.getAll(bean);
+        ResultPage<List<BookData>> result = new ResultPage<>();
         result.setObject(pageInfo.getResult());
         result.setPage(PageUtil.getPageBean(pageInfo));
         return new ResponseEntity<>(result, HttpStatus.OK);
@@ -43,10 +44,10 @@ public class ProjectA1Controller extends BaseController {
 
     @Operation(summary = "新增書籍")
     @PostMapping
-    public ResponseEntity<RestfulBean<Object>> add(@RequestBody ProjectA1Data bean) {
-        ProjectA1 data = new ProjectA1();
+    public ResponseEntity<RestfulBean<Object>> add(@RequestBody AddBookData bean) {
+        Book data = new Book();
         BeanUtils.copyProperties(bean, data);
-        this.projectA1Dao.save(data);
+        this.bookDao.save(data);
         return success(data);
     }
 }

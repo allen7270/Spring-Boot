@@ -1,14 +1,16 @@
-package com.springboot.project.a.model.bo;
+package com.springboot.project.book.model.bo;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Data
 @Entity // create table
 @Table(name = "BOOK")
-public class ProjectA1 {
+public class Book {
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2", parameters = {@org.hibernate.annotations.Parameter(name = "uuid_gen_strategy_class", value = "org.hibernate.id.uuid.CustomVersionOneStrategy")})
@@ -17,4 +19,12 @@ public class ProjectA1 {
     private String book;
     @Column(name = "author")
     private String author;
+    @Column(name = "price")
+    private BigDecimal price;
+    @Column(name = "count")
+    private BigDecimal count;
+    @Column(name = "language")
+    private String language;
+    @Column(name = "content")
+    private String content;
 }
