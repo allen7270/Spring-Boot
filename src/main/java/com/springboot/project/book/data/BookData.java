@@ -11,6 +11,11 @@ public class BookData {
     private String author;
     @Schema(title = "書名")
     private String book;
+    @Schema(title = "單價")
+    private BigDecimal price;
+    @Schema(title = "數量")
+    private BigDecimal count;
+
 
     @Data
     public static class AddBookData {
@@ -18,7 +23,7 @@ public class BookData {
         private String author;
         @Schema(title = "書名")
         private String book;
-        @Schema(title = "價格")
+        @Schema(title = "單價")
         private BigDecimal price;
         @Schema(title = "數量")
         private BigDecimal count;

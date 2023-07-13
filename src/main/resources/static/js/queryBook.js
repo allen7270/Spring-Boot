@@ -27,16 +27,22 @@ function fetchData(pageNumber, pageSize) {
                 const iconCell = document.createElement("td");
                 const authorCell = document.createElement("td");
                 const bookCell = document.createElement("td");
+                const priceCell = document.createElement("td");
+                const countCell = document.createElement("td");
 
                 iconCell.innerHTML = '<i class="fas fa-search"></i>';
                 indexCell.textContent = index + 1;
                 authorCell.textContent = item.author;
                 bookCell.textContent = item.book;
+                priceCell.textContent = item.price;
+                countCell.textContent = item.count;
 
                 row.appendChild(iconCell);
                 row.appendChild(indexCell);
                 row.appendChild(authorCell);
                 row.appendChild(bookCell);
+                row.appendChild(priceCell);
+                row.appendChild(countCell);
 
                 tableBody.appendChild(row);
 

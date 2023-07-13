@@ -29,13 +29,13 @@ public class BookController extends BaseController {
     @Autowired
     private BookDao bookDao;
     @Autowired
-    private BookMapper projectA1Mapper;
+    private BookMapper bookMapper;
 
     @Operation(summary = "查詢書籍", description = "list")
     @GetMapping
     public ResponseEntity<ResultPage<List<BookData>>> getAll(QueryPageBean bean) {
         PageMethod.startPage(bean.getCurNum(), bean.getSize());
-        Page<BookData> pageInfo = (Page<BookData>) this.projectA1Mapper.getAll(bean);
+        Page<BookData> pageInfo = (Page<BookData>) this.bookMapper.getAll(bean);
         ResultPage<List<BookData>> result = new ResultPage<>();
         result.setObject(pageInfo.getResult());
         result.setPage(PageUtil.getPageBean(pageInfo));
@@ -45,6 +45,7 @@ public class BookController extends BaseController {
     @Operation(summary = "新增書籍")
     @PostMapping
     public ResponseEntity<RestfulBean<Object>> add(@RequestBody AddBookData bean) {
+        System.out.println("bean:"+bean);
         Book data = new Book();
         BeanUtils.copyProperties(bean, data);
         this.bookDao.save(data);

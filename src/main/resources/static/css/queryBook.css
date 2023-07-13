@@ -72,12 +72,29 @@ td:first-child {
     width: 30px;
 }
 
+.price-column {
+    text-align: right;
+    width: 35px;
+}
+.count-column {
+    text-align: right;
+    width: 35px;
+}
+
 td:nth-child(1) {
     text-align: center;
 }
 
 td:nth-child(2) {
     text-align: center;
+}
+
+td:nth-child(5) {
+    text-align: right;
+}
+
+td:nth-child(6) {
+    text-align: right;
 }
 
 .button-container .button {
