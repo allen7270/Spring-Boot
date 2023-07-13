@@ -52,7 +52,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/home.html", true).permitAll() // login successful url
 
                 .and().authorizeRequests() // verification required
-                .antMatchers("/user").permitAll() // no verification required
+                .antMatchers("/project/user").permitAll() // no verification required
+                .antMatchers("/register.html").permitAll() // no verification required
+                .antMatchers("/js/register.js").permitAll()
+                .antMatchers("/css/login.css").permitAll()
 //                .antMatchers("/login/index").hasAuthority("admin") // 權限(admin) - UserDetailService 單一權限
 //                .antMatchers("/login/index").hasAnyAuthority("admin", "manager") // 多個權限
                 .antMatchers("/login/index").hasRole("sale") // Prefix ROLE_

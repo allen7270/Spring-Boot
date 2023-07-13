@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,700');
+
+body {
+    font-family: 'Poppins', Arial, sans-serif;
+    background-color: #f2f2f2;
+}
+
+.container {
+    width: 400px;
+    margin: 0 auto;
+    margin-top: 100px;
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.container h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.container input[type="text"],
+.container input[type="password"] {
+    width: 95%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 50px;
+    background-color: #f2f2f2;
+    font-size: 16px;
+    color: #333;
+    transition: background-color 0.3s ease;
+}
+
+.container input[type="text"]:focus,
+.container input[type="password"]:focus {
+    background-color: #e0e0e0;
+    outline: none;
+}
+
+.container input[type="text"]::placeholder,
+.container input[type="password"]::placeholder {
+    color: #999;
+}
+
+.container button {
+    width: 100%;
+    padding: 12px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.container a.btn{
+    width: 25%;
+    margin-top: 5px;
+    margin-left: 35%;
+    padding: 15px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+}
+
+.container button:hover,
+.container a.btn:hover{
+    background-color: #45a049;
+}
+
+.container::before {
+    content: "";
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 200px;
+    height: 200px;
+    background-color: rgba(76, 175, 80, 0.1);
+    border-radius: 50%;
+    animation: floating 4s linear infinite;
+}
+
+.container::after {
+    content: "";
+    position: absolute;
+    bottom: -50px;
+    left: -50px;
+    width: 200px;
+    height: 200px;
+    background-color: rgba(76, 175, 80, 0.1);
+    border-radius: 50%;
+    animation: floating 4s linear infinite;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+}
+
+@keyframes floating {
+    0% {
+        transform: translate(0, 0);
+    }
+    50% {
+        transform: translate(0, 20px);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}

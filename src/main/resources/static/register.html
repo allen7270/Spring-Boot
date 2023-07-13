@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>註冊</title>
+    <link rel="stylesheet" type="text/css" href="css/login.css">
+</head>
+
+<body>
+<div class="container">
+    <h2>註冊</h2>
+    <form>
+        <input type="text" name="username" id="username" placeholder="使用者名稱" required>
+        <input type="password" name="password" id="password" placeholder="密碼" required>
+        <button type="button" onclick="register()">註冊</button>
+    </form>
+
+    <a href="/login.html" class="btn">登入頁面</a>
+
+
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-content">
+            <div id="modalMessage" class="result-message"></div>
+            <button onclick="closeModal()">關閉</button>
+        </div>
+    </div>
+
+    <script src="js/register.js">
+    </script>
+</div>
+</body>
+
+</html>
