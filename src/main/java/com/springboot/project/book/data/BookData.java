@@ -1,12 +1,14 @@
 package com.springboot.project.book.data;
 
+import com.springboot.common.util.SuperBean;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
+import net.bytebuddy.implementation.bind.annotation.Super;
 
 import java.math.BigDecimal;
 
 @Data
-public class BookData {
+public class BookData extends SuperBean{
     @Schema(title = "作者")
     private String author;
     @Schema(title = "書名")

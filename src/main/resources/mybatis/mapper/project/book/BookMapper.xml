@@ -2,6 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.springboot.project.book.model.mapper.BookMapper">
     <select id="getAll" resultType="com.springboot.project.book.data.BookData">
-        SELECT * FROM BOOK
+        SELECT bk.id 'uuid',
+               bk.book,
+               bk.author,
+               bk.price,
+               bk.count,
+               bk.content
+        FROM BOOK bk
     </select>
 </mapper>

@@ -30,12 +30,21 @@ function fetchData(pageNumber, pageSize) {
                 const priceCell = document.createElement("td");
                 const countCell = document.createElement("td");
 
-                iconCell.innerHTML = '<i class="fas fa-search"></i>';
+                const iconButton = document.createElement("button");
+                iconButton.className = "icon-button";
+
+                const icon = document.createElement("i");
+                icon.className = "fas fa-search";
+                iconButton.appendChild(icon);
+                iconCell.appendChild(iconButton);
+
                 indexCell.textContent = index + 1;
                 authorCell.textContent = item.author;
                 bookCell.textContent = item.book;
                 priceCell.textContent = item.price;
                 countCell.textContent = item.count;
+
+                let uuid = item.uuid;
 
                 row.appendChild(iconCell);
                 row.appendChild(indexCell);
@@ -49,6 +58,10 @@ function fetchData(pageNumber, pageSize) {
                 const pageData = data["page"];
                 const totalPages = pageData.totalPages;
                 addButtons(totalPages);
+
+                iconButton.onclick = function () {
+                    openPopup(uuid);
+                };
 
             });
         })
@@ -73,4 +86,43 @@ function addButtons(totalPages) {
         };
         paginationContainer.appendChild(button);
     }
+}
+
+function openPopup(uuid) {
+    const popupContainer = document.getElementById("popupContainer");
+    const popupContent = document.getElementById("popupContent");
+    const closeButton = document.getElementById("closeButton");
+
+    const url = `project/book/${uuid}`;
+
+    let book;
+    let author;
+    let price;
+    let count;
+    let content;
+
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            const bookData = data.object;
+            book = bookData.book;
+            author = bookData.author;
+            price = bookData.price;
+            count = bookData.count;
+            content = bookData.content;
+            document.getElementById("book").innerText = book;
+            document.getElementById("author").innerText = author;
+            document.getElementById("price").innerText = price;
+            document.getElementById("count").innerText = count;
+            document.getElementById("content").innerText = content;
+        });
+
+    // 顯示彈出區域
+    popupContainer.style.display = "block";
+
+    // 處理關閉按鈕的點擊事件
+    closeButton.addEventListener("click", function() {
+        // 隱藏彈出區域
+        popupContainer.style.display = "none";
+    });
 }
