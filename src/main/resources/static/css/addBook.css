@@ -63,7 +63,7 @@ body {
 }
 
 .form-group input {
-    width: 15%;
+    width: 150px;
     padding: 5px;
     font-size: 16px;
     border-radius: 55px;
@@ -122,4 +122,22 @@ body {
 
 .result-message.error {
     color: #ff0000;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+}
+
+.grid-container .form-group:nth-child(1) {
+    grid-column: span 2;
+}
+
+.grid-container .form-group:nth-child(3) {
+    grid-column: span 1;
+}
+
+.grid-container .form-group:nth-child(6) {
+    grid-column: span 3;
 }

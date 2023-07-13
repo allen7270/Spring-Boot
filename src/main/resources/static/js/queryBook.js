@@ -30,7 +30,7 @@ function fetchData(pageNumber, pageSize) {
                 const priceCell = document.createElement("td");
                 const countCell = document.createElement("td");
 
-                const iconButton = document.createElement("button");
+                const iconButton = document.createElement("a");
                 iconButton.className = "icon-button";
 
                 const icon = document.createElement("i");
@@ -95,11 +95,7 @@ function openPopup(uuid) {
 
     const url = `project/book/${uuid}`;
 
-    let book;
-    let author;
-    let price;
-    let count;
-    let content;
+    let book, author, price, count, language, content;
 
     fetch(url)
         .then(response => response.json())
@@ -109,11 +105,13 @@ function openPopup(uuid) {
             author = bookData.author;
             price = bookData.price;
             count = bookData.count;
+            language = bookData.language;
             content = bookData.content;
             document.getElementById("book").innerText = book;
             document.getElementById("author").innerText = author;
             document.getElementById("price").innerText = price;
             document.getElementById("count").innerText = count;
+            document.getElementById("language").innerText = language;
             document.getElementById("content").innerText = content;
         });
 
