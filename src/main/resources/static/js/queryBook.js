@@ -1,5 +1,6 @@
 let pageSize = 5; // 初始頁面5筆
 let page = 1; // 初始第一頁
+
 function submitForm(value) {
     pageSize = value;
     fetchData(page, pageSize);
@@ -11,7 +12,15 @@ function submitPage(value) {
 }
 
 function fetchData(pageNumber, pageSize) {
-    const url = `project/book?curNum=${pageNumber}&size=${pageSize}`;
+
+    const searchBook = document.getElementById("searchBook").value;
+    const searchAuthor = document.getElementById("searchAuthor").value;
+    const searchPrice = document.getElementById("searchPrice").value;
+    const searchCount = document.getElementById("searchCount").value;
+    const searchLanguage = document.getElementById("searchLanguage").value;
+    const searchContent = document.getElementById("searchContent").value;
+
+    const url = `project/book?curNum=${pageNumber}&size=${pageSize}&book=${searchBook}&author=${searchAuthor}&price=${searchPrice}&count=${searchCount}&language=${searchLanguage}&content=${searchContent}`;
 
     fetch(url)
         .then(response => response.json())
@@ -25,8 +34,8 @@ function fetchData(pageNumber, pageSize) {
                 const row = document.createElement("tr");
                 const indexCell = document.createElement("td");
                 const iconCell = document.createElement("td");
-                const authorCell = document.createElement("td");
                 const bookCell = document.createElement("td");
+                const authorCell = document.createElement("td");
                 const priceCell = document.createElement("td");
                 const countCell = document.createElement("td");
 
@@ -39,8 +48,8 @@ function fetchData(pageNumber, pageSize) {
                 iconCell.appendChild(iconButton);
 
                 indexCell.textContent = index + 1;
-                authorCell.textContent = item.author;
                 bookCell.textContent = item.book;
+                authorCell.textContent = item.author;
                 priceCell.textContent = item.price;
                 countCell.textContent = item.count;
 
@@ -48,8 +57,8 @@ function fetchData(pageNumber, pageSize) {
 
                 row.appendChild(iconCell);
                 row.appendChild(indexCell);
-                row.appendChild(authorCell);
                 row.appendChild(bookCell);
+                row.appendChild(authorCell);
                 row.appendChild(priceCell);
                 row.appendChild(countCell);
 

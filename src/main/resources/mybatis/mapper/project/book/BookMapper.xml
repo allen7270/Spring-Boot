@@ -9,5 +9,24 @@
                bk.count,
                bk.content
         FROM BOOK bk
+        WHERE 1=1
+        <if test="bean.book != null and bean.book != ''">
+            AND bk.book = #{bean.book}
+        </if>
+        <if test="bean.author != null and bean.author != ''">
+            AND bk.author = #{bean.author}
+        </if>
+        <if test="bean.price != null and bean.price != ''">
+            AND bk.price &gt;= #{bean.price}
+        </if>
+        <if test="bean.count != null and bean.count != ''">
+            AND bk.count &gt;= #{bean.count}
+        </if>
+        <if test="bean.language != null and bean.language != ''">
+            AND bk.language = #{bean.language}
+        </if>
+        <if test="bean.content != null and bean.content != ''">
+            AND bk.content like CONCAT('%', #{bean.content}, '%')
+        </if>
     </select>
 </mapper>

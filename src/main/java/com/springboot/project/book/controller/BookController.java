@@ -45,7 +45,7 @@ public class BookController extends BaseController {
 
     @Operation(summary = "查詢書籍", description = "list")
     @GetMapping
-    public ResponseEntity<ResultPage<List<BookData>>> getAll(QueryPageBean bean) {
+    public ResponseEntity<ResultPage<List<BookData>>> getAll(queryBookData bean) {
         PageMethod.startPage(bean.getCurNum(), bean.getSize());
         Page<BookData> pageInfo = (Page<BookData>) this.bookMapper.getAll(bean);
         ResultPage<List<BookData>> result = new ResultPage<>();

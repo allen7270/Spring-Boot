@@ -17,6 +17,16 @@
     </ul>
 </nav>
 
+<div class="search-container search-box">
+    <input type="text" id="searchBook" placeholder="書名">
+    <input type="text" id="searchAuthor" placeholder="作者">
+    <input type="text" id="searchPrice" placeholder="單價(以上)">
+    <input type="text" id="searchCount" placeholder="數量(以上)">
+    <input type="text" id="searchLanguage" placeholder="語言">
+    <input type="text" id="searchContent" placeholder="內容">
+    <button style="margin-left: auto" id="searchButton" onclick="fetchData(1,5)" >搜尋</button>
+</div>
+
 <div class="table-container">
     <div class="button-container">
         每頁筆數
@@ -33,8 +43,8 @@
         <tr>
             <th class="icon-column"></th>
             <th class="no-column">NO.</th>
-            <th>作者</th>
             <th>書名</th>
+            <th>作者</th>
             <th class="price-column">單價</th>
             <th class="count-column">數量</th>
         </tr>
