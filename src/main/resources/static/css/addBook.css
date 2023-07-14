@@ -1,39 +1,37 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #f2f2f2;
+    margin: 0;
+}
+
+.nav {
+    background-color: #333;
+    color: #fff;
     padding: 20px;
 }
 
-.navbar {
-    background-color: #333;
-    color: #fff;
-    padding: 10px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 999;
-}
-
-.navbar ul {
+.nav ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
+    display: flex;
+    justify-content: center;
 }
 
-.navbar li {
-    display: inline-block;
-    margin-right: 10px;
+.nav li {
+    margin-right: 20px;
 }
 
-.navbar li a {
+.nav a {
     color: #fff;
     text-decoration: none;
-    padding: 5px 10px;
+    font-size: 16px;
+    font-weight: 500;
+    transition: color 0.3s ease;
 }
 
-.navbar li a:hover {
-    background-color: #555;
+.nav a:hover {
+    color: #4CAF50;
 }
 
 .form-container {

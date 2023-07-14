@@ -96,9 +96,24 @@
             font-size: 14px;
             font-weight: 400;
         }
+
+        html{
+            scroll-behavior: smooth;
+        }
     </style>
 </head>
 <body>
+<nav class="nav">
+    <ul>
+        <li><a href="#">首頁</a></li>
+        <li><a href="#">關於我們</a></li>
+        <li><a href="addBook.html">新增書籍</a></li>
+        <li><a href="queryBook.html">查看書籍</a></li>
+        <li><a href="#footer">聯絡我們</a></li>
+        <li id="userName" style="margin-left: auto"></li>
+    </ul>
+</nav>
+
 <div class="hero">
 <!--    <div class="hero-content">-->
 <!--        <h1>歡迎來到我們的網站！</h1>-->
@@ -106,22 +121,14 @@
 <!--    </div>-->
 </div>
 
-<nav class="nav">
-    <ul>
-        <li><a href="#">首頁</a></li>
-        <li><a href="#">關於我們</a></li>
-        <li><a href="addBook.html">新增書籍</a></li>
-        <li><a href="queryBook.html">查看書籍</a></li>
-        <li><a href="#">聯絡我們</a></li>
-    </ul>
-</nav>
-
 <section class="services">
     <h2>我們的服務</h2>
     <p>在這裡列出你提供的服務或產品的關鍵信息，吸引訪問者進一步了解。</p>
 </section>
 
-<footer class="footer">
+<script src="js/common.js"></script>
+
+<footer class="footer" id="footer">
     <p>版權所有 &copy; 2023 我的網站</p>
 </footer>
 </body>

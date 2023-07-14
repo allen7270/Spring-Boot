@@ -1,5 +1,6 @@
 let pageSize = 5; // 初始頁面5筆
 let page = 1; // 初始第一頁
+userName();
 function submitForm(value) {
     pageSize = value;
     fetchData(page, pageSize);
@@ -123,4 +124,17 @@ function openPopup(uuid) {
         // 隱藏彈出區域
         popupContainer.style.display = "none";
     });
+}
+
+function userName() {
+    const userName = document.getElementById("userName");
+    const url = `project/user/getUserName`;
+    fetch(url)
+        .then(response => response.text())
+        .then(data => {
+            userName.innerText = data;
+        })
+        .catch(error => {
+            console.log(error);
+        });
 }

@@ -66,5 +66,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .userDetailsService(this.userDetailsService)
 
                 .and().csrf().disable();
+//                .logout().addLogoutHandler();
     }
 }

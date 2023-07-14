@@ -8,6 +8,7 @@ import com.springboot.web.util.BaseController;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -27,5 +28,10 @@ public class UserController extends BaseController {
     @GetMapping
     public String user() {
         return "user";
+    }
+
+    @GetMapping("/getUserName")
+    public String getUserName() {
+        return SecurityContextHolder.getContext().getAuthentication().getName();
     }
 }

@@ -4,31 +4,34 @@ body {
     font-family: Arial, sans-serif;
 }
 
-.navbar {
+.nav {
     background-color: #333;
     color: #fff;
-    padding: 10px;
+    padding: 20px;
 }
 
-.navbar ul {
+.nav ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
+    display: flex;
+    justify-content: center;
 }
 
-.navbar li {
-    display: inline-block;
-    margin-right: 10px;
+.nav li {
+    margin-right: 20px;
 }
 
-.navbar li a {
+.nav a {
     color: #fff;
     text-decoration: none;
-    padding: 5px 10px;
+    font-size: 16px;
+    font-weight: 500;
+    transition: color 0.3s ease;
 }
 
-.navbar li a:hover {
-    background-color: #555;
+.nav a:hover {
+    color: #4CAF50;
 }
 
 .table-container {
