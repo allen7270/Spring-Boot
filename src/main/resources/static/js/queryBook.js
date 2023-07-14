@@ -32,20 +32,26 @@ function fetchData(pageNumber, pageSize) {
             // table
             data.object.forEach((item, index) => {
                 const row = document.createElement("tr");
+                const iconCheckboxCell = document.createElement("td");
                 const indexCell = document.createElement("td");
-                const iconCell = document.createElement("td");
                 const bookCell = document.createElement("td");
                 const authorCell = document.createElement("td");
                 const priceCell = document.createElement("td");
                 const countCell = document.createElement("td");
 
+                iconCheckboxCell.className = "icon-checkbox-cell";
+
+                const checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+                checkbox.id = "deleteCheckbox";
+                iconCheckboxCell.appendChild(checkbox);
+
                 const iconButton = document.createElement("a");
                 iconButton.className = "icon-button";
-
                 const icon = document.createElement("i");
                 icon.className = "fas fa-search";
                 iconButton.appendChild(icon);
-                iconCell.appendChild(iconButton);
+                iconCheckboxCell.appendChild(iconButton);
 
                 indexCell.textContent = index + 1;
                 bookCell.textContent = item.book;
@@ -55,7 +61,7 @@ function fetchData(pageNumber, pageSize) {
 
                 let uuid = item.uuid;
 
-                row.appendChild(iconCell);
+                row.appendChild(iconCheckboxCell);
                 row.appendChild(indexCell);
                 row.appendChild(bookCell);
                 row.appendChild(authorCell);
@@ -139,4 +145,9 @@ function openPopup(uuid) {
         // 隱藏彈出區域
         popupContainer.style.display = "none";
     });
+}
+
+function deleteBooks() {
+
+
 }
