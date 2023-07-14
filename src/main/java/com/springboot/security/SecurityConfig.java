@@ -44,7 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //        unAuth html
         http.exceptionHandling().accessDeniedPage("/unAuth.html");
         http.logout().logoutUrl("/logout").permitAll()
-                .logoutSuccessUrl("/login/successLogout");
+                .logoutSuccessUrl("/login.html");
         http
                 .formLogin()
                 .loginPage("/login.html") // login page
@@ -66,6 +66,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .userDetailsService(this.userDetailsService)
 
                 .and().csrf().disable();
-//                .logout().addLogoutHandler();
     }
 }

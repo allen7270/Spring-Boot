@@ -40,6 +40,7 @@ function addBook() {
     });
 }
 
+// common.js
 function userName() {
     const userName = document.getElementById("userName");
     const url = `project/user/getUserName`;
@@ -52,3 +53,12 @@ function userName() {
             console.log(error);
         });
 }
+
+const logoutButton = document.getElementById('logoutButton');
+logoutButton.addEventListener('click', function() {
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = '/logout';
+    document.body.appendChild(form);
+    form.submit();
+});

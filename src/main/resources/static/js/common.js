@@ -11,3 +11,12 @@ function userName() {
           console.log(error);
         });
 }
+
+const logoutButton = document.getElementById('logoutButton');
+logoutButton.addEventListener('click', function() {
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = '/logout';
+    document.body.appendChild(form);
+    form.submit();
+});
