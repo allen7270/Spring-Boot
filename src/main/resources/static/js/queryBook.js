@@ -73,6 +73,13 @@ function fetchData(pageNumber, pageSize) {
                 };
 
             });
+
+            // 清空欄位
+            const inputs = document.querySelectorAll('input[type="text"]');
+            inputs.forEach(function(input) {
+                input.value = '';
+            });
+
         })
         .catch(error => {
             console.error(error);

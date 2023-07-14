@@ -25,6 +25,6 @@ public class Book {
     private BigDecimal count;
     @Column(name = "language")
     private String language;
-    @Column(name = "content")
+    @Column(name = "content", length = 1000)
     private String content;
 }
