@@ -89,6 +89,12 @@ function fetchData(pageNumber, pageSize) {
                 const totalPages = pageData.totalPages;
                 addButtons(totalPages);
 
+                const totalElements = pageData.totalElements;
+                const curNum = pageData.curNum;
+
+                const totalPageData = document.getElementById('totalPageData');
+                totalPageData.innerText = `| 共${totalElements}筆，第${curNum}頁，共${totalPages}頁`;
+
                 iconButton.onclick = function () {
                     openPopup(uuid);
                 };
