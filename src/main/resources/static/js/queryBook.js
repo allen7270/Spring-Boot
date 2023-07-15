@@ -147,24 +147,15 @@ function openPopupQuery(uuid) {
 
     const url = `project/book/${uuid}`;
 
-    let book, author, price, count, language, content;
-
     fetch(url)
         .then(response => response.json())
         .then(data => {
             const sendButton = document.getElementById("sendButton");
             if (sendButton) {
-                sendButton.parentNode.removeChild(sendButton);
+                sendButton.remove();
             }
 
             const bookData = data.object;
-            book = bookData.book;
-            author = bookData.author;
-            price = bookData.price;
-            count = bookData.count;
-            language = bookData.language;
-            content = bookData.content;
-
             const getByIdBook = document.getElementById("book");
             const getByIdAuthor = document.getElementById("author");
             const getByIdPrice = document.getElementById("price");
@@ -172,34 +163,22 @@ function openPopupQuery(uuid) {
             const getByIdLanguage = document.getElementById("language");
             const getByIdContent = document.getElementById("content");
 
-            getByIdBook.value = book;
-            getByIdAuthor.value = author;
-            getByIdPrice.value = price;
-            getByIdCount.value = count;
-            getByIdLanguage.value = language;
-            getByIdContent.value = content;
+            getByIdBook.value = bookData.book;
+            getByIdAuthor.value = bookData.author;
+            getByIdPrice.value = bookData.price;
+            getByIdCount.value = bookData.count;
+            getByIdLanguage.value = bookData.language;
+            getByIdContent.value = bookData.content;
 
-            getByIdBook.readOnly = true;
-            getByIdAuthor.readOnly = true;
-            getByIdPrice.readOnly = true;
-            getByIdCount.readOnly = true;
-            getByIdLanguage.readOnly = true;
-            getByIdContent.readOnly = true;
-
-            getByIdBook.classList.add("readonly-input");
-            getByIdAuthor.classList.add("readonly-input");
-            getByIdPrice.classList.add("readonly-input");
-            getByIdCount.classList.add("readonly-input");
-            getByIdLanguage.classList.add("readonly-input");
-            getByIdContent.classList.add("readonly-input");
+            [getByIdBook, getByIdAuthor, getByIdPrice, getByIdCount, getByIdLanguage, getByIdContent].forEach(element => {
+                element.readOnly = true;
+                element.classList.add("readonly-input");
+            });
         });
 
-    // 顯示彈出區域
     popupContainer.style.display = "block";
 
-    // 處理關閉按鈕的點擊事件
     closeButton.addEventListener("click", function() {
-        // 隱藏彈出區域
         popupContainer.style.display = "none";
     });
 }
@@ -211,19 +190,10 @@ function openPopupEdit(uuid) {
 
     const url = `project/book/${uuid}`;
 
-    let book, author, price, count, language, content;
-
     fetch(url)
         .then(response => response.json())
         .then(data => {
             const bookData = data.object;
-            book = bookData.book;
-            author = bookData.author;
-            price = bookData.price;
-            count = bookData.count;
-            language = bookData.language;
-            content = bookData.content;
-
             const getByIdBook = document.getElementById("book");
             const getByIdAuthor = document.getElementById("author");
             const getByIdPrice = document.getElementById("price");
@@ -231,35 +201,17 @@ function openPopupEdit(uuid) {
             const getByIdLanguage = document.getElementById("language");
             const getByIdContent = document.getElementById("content");
 
-            getByIdBook.value = book;
-            getByIdAuthor.value = author;
-            getByIdPrice.value = price;
-            getByIdCount.value = count;
-            getByIdLanguage.value = language;
-            getByIdContent.value = content;
+            getByIdBook.value = bookData.book;
+            getByIdAuthor.value = bookData.author;
+            getByIdPrice.value = bookData.price;
+            getByIdCount.value = bookData.count;
+            getByIdLanguage.value = bookData.language;
+            getByIdContent.value = bookData.content;
 
-            getByIdBook.readOnly = false;
-            getByIdAuthor.readOnly = false;
-            getByIdPrice.readOnly = false;
-            getByIdCount.readOnly = false;
-            getByIdLanguage.readOnly = false;
-            getByIdContent.readOnly = false;
-
-            getByIdBook.classList.remove("readonly-input");
-            getByIdAuthor.classList.remove("readonly-input");
-            getByIdPrice.classList.remove("readonly-input");
-            getByIdCount.classList.remove("readonly-input");
-            getByIdLanguage.classList.remove("readonly-input");
-            getByIdContent.classList.remove("readonly-input");
-
-            const editData = {
-                book: book,
-                author: getByIdAuthor,
-                price: getByIdPrice,
-                count: getByIdCount,
-                language: getByIdLanguage,
-                content: getByIdContent
-            };
+            [getByIdBook, getByIdAuthor, getByIdPrice, getByIdCount, getByIdLanguage, getByIdContent].forEach(element => {
+                element.readOnly = false;
+                element.classList.remove("readonly-input");
+            });
 
             let sendButton = document.getElementById("sendButton");
 
@@ -271,6 +223,14 @@ function openPopupEdit(uuid) {
             }
 
             sendButton.addEventListener("click", function() {
+                const editData = {
+                    book: getByIdBook.value,
+                    author: getByIdAuthor.value,
+                    price: getByIdPrice.value,
+                    count: getByIdCount.value,
+                    language: getByIdLanguage.value,
+                    content: getByIdContent.value
+                };
                 const jsonString = JSON.stringify(editData);
 
                 const xhr = new XMLHttpRequest();
