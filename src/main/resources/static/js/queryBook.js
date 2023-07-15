@@ -68,13 +68,18 @@ function fetchData(pageNumber, pageSize) {
                 iconButton.appendChild(icon);
                 iconCheckboxCell.appendChild(iconButton);
 
+                const editButton = document.createElement("a");
+                editButton.className = "icon-button-edit";
+                const editIcon = document.createElement("i");
+                editIcon.className = "fas fa-pencil-alt";
+                editButton.appendChild(editIcon);
+                iconCheckboxCell.appendChild(editButton);
+
                 indexCell.textContent = index + 1;
                 bookCell.textContent = item.book;
                 authorCell.textContent = item.author;
                 priceCell.textContent = item.price;
                 countCell.textContent = item.count;
-
-
 
                 row.appendChild(iconCheckboxCell);
                 row.appendChild(indexCell);
@@ -96,7 +101,11 @@ function fetchData(pageNumber, pageSize) {
                 totalPageData.innerText = `| 共${totalElements}筆，第${curNum}頁，共${totalPages}頁`;
 
                 iconButton.onclick = function () {
-                    openPopup(uuid);
+                    openPopupQuery(uuid);
+                };
+
+                editButton.onclick = function () {
+                    openPopupEdit(uuid);
                 };
 
             });
@@ -131,7 +140,71 @@ function addButtons(totalPages) {
     }
 }
 
-function openPopup(uuid) {
+function openPopupQuery(uuid) {
+    const popupContainer = document.getElementById("popupContainer");
+    const popupContent = document.getElementById("popupContent");
+    const closeButton = document.getElementById("closeButton");
+
+    const url = `project/book/${uuid}`;
+
+    let book, author, price, count, language, content;
+
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            const sendButton = document.getElementById("sendButton");
+            if (sendButton) {
+                sendButton.parentNode.removeChild(sendButton);
+            }
+
+            const bookData = data.object;
+            book = bookData.book;
+            author = bookData.author;
+            price = bookData.price;
+            count = bookData.count;
+            language = bookData.language;
+            content = bookData.content;
+
+            const getByIdBook = document.getElementById("book");
+            const getByIdAuthor = document.getElementById("author");
+            const getByIdPrice = document.getElementById("price");
+            const getByIdCount = document.getElementById("count");
+            const getByIdLanguage = document.getElementById("language");
+            const getByIdContent = document.getElementById("content");
+
+            getByIdBook.value = book;
+            getByIdAuthor.value = author;
+            getByIdPrice.value = price;
+            getByIdCount.value = count;
+            getByIdLanguage.value = language;
+            getByIdContent.value = content;
+
+            getByIdBook.readOnly = true;
+            getByIdAuthor.readOnly = true;
+            getByIdPrice.readOnly = true;
+            getByIdCount.readOnly = true;
+            getByIdLanguage.readOnly = true;
+            getByIdContent.readOnly = true;
+
+            getByIdBook.classList.add("readonly-input");
+            getByIdAuthor.classList.add("readonly-input");
+            getByIdPrice.classList.add("readonly-input");
+            getByIdCount.classList.add("readonly-input");
+            getByIdLanguage.classList.add("readonly-input");
+            getByIdContent.classList.add("readonly-input");
+        });
+
+    // 顯示彈出區域
+    popupContainer.style.display = "block";
+
+    // 處理關閉按鈕的點擊事件
+    closeButton.addEventListener("click", function() {
+        // 隱藏彈出區域
+        popupContainer.style.display = "none";
+    });
+}
+
+function openPopupEdit(uuid) {
     const popupContainer = document.getElementById("popupContainer");
     const popupContent = document.getElementById("popupContent");
     const closeButton = document.getElementById("closeButton");
@@ -150,12 +223,71 @@ function openPopup(uuid) {
             count = bookData.count;
             language = bookData.language;
             content = bookData.content;
-            document.getElementById("book").innerText = book;
-            document.getElementById("author").innerText = author;
-            document.getElementById("price").innerText = price;
-            document.getElementById("count").innerText = count;
-            document.getElementById("language").innerText = language;
-            document.getElementById("content").innerText = content;
+
+            const getByIdBook = document.getElementById("book");
+            const getByIdAuthor = document.getElementById("author");
+            const getByIdPrice = document.getElementById("price");
+            const getByIdCount = document.getElementById("count");
+            const getByIdLanguage = document.getElementById("language");
+            const getByIdContent = document.getElementById("content");
+
+            getByIdBook.value = book;
+            getByIdAuthor.value = author;
+            getByIdPrice.value = price;
+            getByIdCount.value = count;
+            getByIdLanguage.value = language;
+            getByIdContent.value = content;
+
+            getByIdBook.readOnly = false;
+            getByIdAuthor.readOnly = false;
+            getByIdPrice.readOnly = false;
+            getByIdCount.readOnly = false;
+            getByIdLanguage.readOnly = false;
+            getByIdContent.readOnly = false;
+
+            getByIdBook.classList.remove("readonly-input");
+            getByIdAuthor.classList.remove("readonly-input");
+            getByIdPrice.classList.remove("readonly-input");
+            getByIdCount.classList.remove("readonly-input");
+            getByIdLanguage.classList.remove("readonly-input");
+            getByIdContent.classList.remove("readonly-input");
+
+            const editData = {
+                book: book,
+                author: getByIdAuthor,
+                price: getByIdPrice,
+                count: getByIdCount,
+                language: getByIdLanguage,
+                content: getByIdContent
+            };
+
+            let sendButton = document.getElementById("sendButton");
+
+            if (!sendButton) {
+                sendButton = document.createElement("button");
+                sendButton.textContent = "修改";
+                sendButton.id = "sendButton";
+                popupContent.appendChild(sendButton);
+            }
+
+            sendButton.addEventListener("click", function() {
+                const jsonString = JSON.stringify(editData);
+
+                const xhr = new XMLHttpRequest();
+                const url = `project/book/${uuid}`;
+                xhr.open("PUT", url, true);
+                xhr.setRequestHeader("Content-Type", "application/json");
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4 ) {
+                        if (xhr.status === 200) {
+                            showResultMessage("修改成功！", "success");
+                        } else {
+                            showResultMessage("修改失敗！", "error");
+                        }
+                    }
+                };
+                xhr.send(jsonString);
+            });
         });
 
     // 顯示彈出區域

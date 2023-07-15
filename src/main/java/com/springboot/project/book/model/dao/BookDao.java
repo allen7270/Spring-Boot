@@ -12,4 +12,5 @@ import java.util.Optional;
 public interface BookDao extends JpaRepository<Book, String> {
     Optional<Book> findById(String id);
     List<Book> findByIdInAndIsCancelFalse(List<String> uuidList);
+    Optional<Book> findByIdAndIsCancelFalse(String uuid);
 }

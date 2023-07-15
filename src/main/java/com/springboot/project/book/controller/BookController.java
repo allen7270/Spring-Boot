@@ -83,4 +83,23 @@ public class BookController extends BaseController {
             return error(ErrorCode.UNKNOW);
         }
     }
+
+    @Operation(summary = "單筆更新")
+    @PutMapping("/{uuid}")
+    public ResponseEntity<RestfulBean<Object>> update(@PathVariable String uuid, @Valid @RequestBody AddBookData bean) {
+        try {
+            Optional<Book> op = this.bookDao.findByIdAndIsCancelFalse(uuid);
+            if (op.isPresent()) {
+                Book obj = op.get();
+                BeanUtils.copyProperties(bean, obj);
+                this.bookDao.save(obj);
+                return success("更新完成");
+            } else {
+                return error(ErrorCode.DATA_NOT_EXIST);
+            }
+        } catch (Exception e) {
+            return error(ErrorCode.UNKNOW);
+        }
+    }
+
 }
