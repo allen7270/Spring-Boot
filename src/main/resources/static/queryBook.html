@@ -29,7 +29,11 @@
 </div>
 
 <div class="table-container">
-    <button id="trashButton" class="button" onclick="deleteBooks()"><i class="fas fa-trash"></i></button>
+    <div>
+        目前已勾選<a id="deleteCount" style="color: #45a049; margin-left: 10px; margin-right: 10px">0</a>筆
+        <button id="trashButton" class="button" onclick="deleteBooks()"><i class="fas fa-trash"></i></button>
+    </div>
+
     <div class="button-container">
         每頁筆數
         <button id="submitButton5" class="button" onclick="submitForm(5)">5</button>
@@ -104,19 +108,5 @@
 <script src="js/queryBook.js"></script>
 <script src="js/common.js"></script>
 
-<!--<script>-->
-<!--    const checkboxes = document.querySelectorAll("#deleteCheckbox");-->
-<!--    let checkedCount = 0;-->
-<!--    checkboxes.forEach(function (checkbox) {-->
-<!--        checkbox.addEventListener("change", function () {-->
-<!--            if (this.checked) {-->
-<!--                checkedCount++;-->
-<!--                console.log("复选框被勾选");-->
-<!--            } else {-->
-<!--                console.log("复选框被取消勾选");-->
-<!--            }-->
-<!--        });-->
-<!--    });-->
-<!--</script>-->
 </body>
 </html>

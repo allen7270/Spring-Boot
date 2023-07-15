@@ -12,6 +12,7 @@ function submitPage(value) {
 }
 
 function fetchData(pageNumber, pageSize) {
+    let checkedCount = 0;
 
     const searchBook = document.getElementById("searchBook").value;
     const searchAuthor = document.getElementById("searchAuthor").value;
@@ -19,6 +20,7 @@ function fetchData(pageNumber, pageSize) {
     const searchCount = document.getElementById("searchCount").value;
     const searchLanguage = document.getElementById("searchLanguage").value;
     const searchContent = document.getElementById("searchContent").value;
+    const deleteCount = document.getElementById("deleteCount");
 
     const url = `project/book?curNum=${pageNumber}&size=${pageSize}&book=${searchBook}&author=${searchAuthor}&price=${searchPrice}&count=${searchCount}&language=${searchLanguage}&content=${searchContent}`;
 
@@ -48,6 +50,16 @@ function fetchData(pageNumber, pageSize) {
                 checkbox.id = "deleteCheckbox";
                 checkbox.value = uuid + (index + 1);
                 iconCheckboxCell.appendChild(checkbox);
+
+                checkbox.addEventListener("change", function () {
+                    if (this.checked) {
+                        checkedCount++;
+                    } else {
+                        checkedCount--;
+                    }
+                    deleteCount.innerText = `${checkedCount}`;
+                });
+
 
                 const iconButton = document.createElement("a");
                 iconButton.className = "icon-button";

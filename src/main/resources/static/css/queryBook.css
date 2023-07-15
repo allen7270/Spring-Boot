@@ -242,6 +242,7 @@ td:nth-child(6) {
 
 
 #trashButton {
+    margin-left: 10px;
     margin-right: 5px;
     background-color: #fff;
     color: #4CAF50;
