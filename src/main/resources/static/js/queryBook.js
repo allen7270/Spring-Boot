@@ -31,6 +31,8 @@ function fetchData(pageNumber, pageSize) {
 
             // table
             data.object.forEach((item, index) => {
+                let uuid = item.uuid;
+
                 const row = document.createElement("tr");
                 const iconCheckboxCell = document.createElement("td");
                 const indexCell = document.createElement("td");
@@ -44,6 +46,7 @@ function fetchData(pageNumber, pageSize) {
                 const checkbox = document.createElement("input");
                 checkbox.type = "checkbox";
                 checkbox.id = "deleteCheckbox";
+                checkbox.value = uuid + (index + 1);
                 iconCheckboxCell.appendChild(checkbox);
 
                 const iconButton = document.createElement("a");
@@ -59,7 +62,7 @@ function fetchData(pageNumber, pageSize) {
                 priceCell.textContent = item.price;
                 countCell.textContent = item.count;
 
-                let uuid = item.uuid;
+
 
                 row.appendChild(iconCheckboxCell);
                 row.appendChild(indexCell);
@@ -148,6 +151,46 @@ function openPopup(uuid) {
 }
 
 function deleteBooks() {
+    let rowNum, uuid;
+    const data = [];
+    const checkboxes = document.querySelectorAll("#deleteCheckbox");
 
+    checkboxes.forEach(function (checkbox) {
+        if (checkbox.checked) {
+            let value = checkbox.value;
+            rowNum = value.substring(36)
+            uuid = value.substring(0, 36);
+            data.push({
+                rowNum: rowNum,
+                uuid: uuid,
+            });
+        }
+    });
 
+    const jsonData = {
+        objects: data,
+    };
+
+    const jsonString = JSON.stringify(jsonData);
+
+    const xhr = new XMLHttpRequest();
+    const url = "project/book";
+    xhr.open("DELETE", url, true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 ) {
+            if (xhr.status === 200) {
+                showResultMessage("書籍刪除成功！", "success");
+            } else {
+                showResultMessage("書籍刪除失敗！", "error");
+            }
+        }
+    };
+    xhr.send(jsonString);
+}
+
+function closeModal() {
+    const modalOverlay = document.getElementById("modalOverlay");
+    modalOverlay.style.display = "none";
+    location.reload();
 }

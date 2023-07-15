@@ -93,8 +93,30 @@
     </div>
 </div>
 
+<div class="modal-overlay" id="modalOverlay">
+    <div class="modal-content">
+        <div id="modalMessage" class="result-message"></div>
+        <button onclick="closeModal()">關閉</button>
+    </div>
+</div>
+
+<script src="js/showMsg.js"></script>
 <script src="js/queryBook.js"></script>
 <script src="js/common.js"></script>
 
+<!--<script>-->
+<!--    const checkboxes = document.querySelectorAll("#deleteCheckbox");-->
+<!--    let checkedCount = 0;-->
+<!--    checkboxes.forEach(function (checkbox) {-->
+<!--        checkbox.addEventListener("change", function () {-->
+<!--            if (this.checked) {-->
+<!--                checkedCount++;-->
+<!--                console.log("复选框被勾选");-->
+<!--            } else {-->
+<!--                console.log("复选框被取消勾选");-->
+<!--            }-->
+<!--        });-->
+<!--    });-->
+<!--</script>-->
 </body>
 </html>

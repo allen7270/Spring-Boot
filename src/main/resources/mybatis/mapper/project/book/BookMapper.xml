@@ -9,7 +9,7 @@
                bk.count,
                bk.content
         FROM BOOK bk
-        WHERE 1=1
+        WHERE bk.isCancel = false
         <if test="bean.book != null and bean.book != ''">
             AND bk.book = #{bean.book}
         </if>

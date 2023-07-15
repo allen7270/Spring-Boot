@@ -92,6 +92,7 @@ body {
 .form-group button:hover {
     background-color: #59b4c7;
 }
+
 .modal-overlay {
     position: fixed;
     top: 0;

@@ -5,6 +5,7 @@ import com.springboot.common.util.ResultBean;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import java.util.Map;
 
@@ -46,5 +47,9 @@ public abstract class BaseController<T> {
 
     protected ResponseEntity<RestfulBean<T>> error(RestfulBean<T> result) {
         return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
+    }
+
+    protected String userName() {
+        return SecurityContextHolder.getContext().getAuthentication().getName();
     }
 }

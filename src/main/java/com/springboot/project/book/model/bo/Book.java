@@ -6,6 +6,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Date;
 
 @Data
 @Entity // create table
@@ -27,4 +28,11 @@ public class Book {
     private String language;
     @Column(name = "content", length = 1000)
     private String content;
+
+    @Column(name = "isCancel", nullable = false)
+    private Boolean isCancel = false;
+    @Column(name = "cancelId", length = 50)
+    private String cancelId;
+    @Column(name = "cancelDate")
+    private Date cancelDate;
 }

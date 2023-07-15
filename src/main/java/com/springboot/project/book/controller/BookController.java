@@ -2,7 +2,7 @@ package com.springboot.project.book.controller;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.page.*;
-import com.springboot.common.util.QueryPageBean;
+import com.springboot.common.data.BatchDeleteData;
 import com.springboot.project.book.data.BookData;
 import com.springboot.project.book.data.BookData.*;
 import com.springboot.project.book.model.bo.Book;
@@ -10,6 +10,7 @@ import com.springboot.project.book.model.dao.BookDao;
 import com.springboot.common.util.RestfulBean;
 import com.springboot.common.util.ResultPage;
 import com.springboot.project.book.model.mapper.BookMapper;
+import com.springboot.project.book.service.BookService;
 import com.springboot.web.util.BaseController;
 import com.springboot.web.util.ErrorCode;
 import com.springboot.web.util.PageUtil;
@@ -21,6 +22,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,6 +34,8 @@ public class BookController extends BaseController {
     private BookDao bookDao;
     @Autowired
     private BookMapper bookMapper;
+    @Autowired
+    private BookService bookService;
 
     @Operation(summary = "新增書籍")
     @PostMapping
@@ -62,6 +66,21 @@ public class BookController extends BaseController {
             return success(bookData);
         } else {
             return error(ErrorCode.DATA_NOT_EXIST, "資料不存在或已註銷");
+        }
+    }
+
+    @Operation(summary = "批次刪除書籍")
+    @DeleteMapping
+    public ResponseEntity<RestfulBean<Object>> delete(@Valid @RequestBody BatchDeleteData data) {
+        try {
+            RestfulBean<Object> result = this.bookService.deleteAddProof(data, this.userName());
+            if (result.getStatus() == 200) {
+                return success(result);
+            } else {
+                return error(result);
+            }
+        }  catch (RuntimeException e) {
+            return error(ErrorCode.UNKNOW);
         }
     }
 }
