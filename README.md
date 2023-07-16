@@ -1,5 +1,5 @@
 ## 專案說明 (Project Title)：
-![](https://hackmd.io/_uploads/SJbUhCxqn.png)
+<img width="1280" alt="截圖 2023-07-16 10 55 55" src="https://github.com/allen7270/spring-boot/assets/67735987/1c588d78-a694-45d3-a997-7038b8e6a420">
 
 **`Java | SpringBoot | JPA | Mybatis | MySQL | Git  HTML | CSS | JS |`**
 
@@ -17,10 +17,10 @@
 * `放大鏡`為`查看`資料明細，透過`uuid`撈取書籍詳細資料
 * `修改`按鈕透過`JSON`格式，將資料傳送透端進行修改 **`(JPA)`**
 ### 附錄[](https://)
-![](https://hackmd.io/_uploads/rkB2gJW52.png)
+<img width="1280" alt="截圖 2023-07-16 11 13 42" src="https://github.com/allen7270/spring-boot/assets/67735987/458a425d-d450-4d53-b29a-3fb98f010eeb">
 
 * 圖A
 
-![](https://hackmd.io/_uploads/rkb6l1Z9h.png)
+<img width="1280" alt="截圖 2023-07-16 11 13 55" src="https://github.com/allen7270/spring-boot/assets/67735987/04c8518c-08b4-4fa4-8f56-8aac584f35fa">
 
 * 圖B
