@@ -53,7 +53,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .and().authorizeRequests() // verification required
                 .antMatchers("/project/user").permitAll() // no verification required
-                .antMatchers("/register.html").permitAll() // no verification required
+                .antMatchers("/register.html").permitAll()
                 .antMatchers("/js/register.js").permitAll()
                 .antMatchers("/js/showMsg.js").permitAll()
                 .antMatchers("/css/login.css").permitAll()

@@ -2,7 +2,7 @@ package com.springboot.project.book.controller;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.page.*;
-import com.springboot.common.data.BatchDeleteData;
+import com.springboot.common.data.BatchData;
 import com.springboot.project.book.data.BookData;
 import com.springboot.project.book.data.BookData.*;
 import com.springboot.project.book.model.bo.Book;
@@ -71,9 +71,9 @@ public class BookController extends BaseController {
 
     @Operation(summary = "批次刪除書籍")
     @DeleteMapping
-    public ResponseEntity<RestfulBean<Object>> delete(@Valid @RequestBody BatchDeleteData data) {
+    public ResponseEntity<RestfulBean<Object>> delete(@Valid @RequestBody BatchData data) {
         try {
-            RestfulBean<Object> result = this.bookService.deleteAddProof(data, this.userName());
+            RestfulBean<Object> result = this.bookService.deleteBook(data, this.userName());
             if (result.getStatus() == 200) {
                 return success(result);
             } else {

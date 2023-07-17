@@ -250,9 +250,8 @@ td:nth-child(6) {
 }
 
 
-#trashButton {
+#trashButton ,#shoppingCartButton{
     margin-left: 10px;
-    margin-right: 5px;
     background-color: #fff;
     color: #4CAF50;
     border: none;
@@ -263,7 +262,7 @@ td:nth-child(6) {
     transition: background-color 0.3s ease;
 }
 
-#trashButton:hover {
+#trashButton:hover ,#shoppingCartButton:hover{
     color: #45a049;
 }
 

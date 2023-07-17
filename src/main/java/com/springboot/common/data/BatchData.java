@@ -15,7 +15,7 @@ import java.util.List;
  */
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class BatchDeleteData{
+public class BatchData {
     @Valid
     @NotEmpty(message = "objects不得為空")
     @Schema(title = "批次物件")

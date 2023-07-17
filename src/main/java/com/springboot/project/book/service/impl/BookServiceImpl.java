@@ -1,6 +1,6 @@
 package com.springboot.project.book.service.impl;
 
-import com.springboot.common.data.BatchDeleteData;
+import com.springboot.common.data.BatchData;
 import com.springboot.common.data.RecordData;
 import com.springboot.common.util.RestfulBean;
 import com.springboot.common.util.ResultBean;
@@ -19,7 +19,7 @@ public class BookServiceImpl implements BookService {
     @Autowired
     private BookDao bookDao;
     @Override
-    public RestfulBean<Object> deleteAddProof(BatchDeleteData data, String userName) {
+    public RestfulBean<Object> deleteBook(BatchData data, String userName) {
         RestfulBean<Object> restful = new ResultBean<>();
         List<RecordData> recordList = data.getObjects();
         List<String> uuids = recordList.stream().map(RecordData::getUuid).collect(Collectors.toList());

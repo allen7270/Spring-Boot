@@ -47,7 +47,7 @@ function fetchData(pageNumber, pageSize) {
 
                 const checkbox = document.createElement("input");
                 checkbox.type = "checkbox";
-                checkbox.id = "deleteCheckbox";
+                checkbox.id = "choiceCheckbox";
                 checkbox.value = uuid + (index + 1);
                 iconCheckboxCell.appendChild(checkbox);
 
@@ -263,7 +263,7 @@ function openPopupEdit(uuid) {
 function deleteBooks() {
     let rowNum, uuid;
     const data = [];
-    const checkboxes = document.querySelectorAll("#deleteCheckbox");
+    const checkboxes = document.querySelectorAll("#choiceCheckbox");
 
     checkboxes.forEach(function (checkbox) {
         if (checkbox.checked) {
@@ -293,6 +293,45 @@ function deleteBooks() {
                 showResultMessage("書籍刪除成功！", "success");
             } else {
                 showResultMessage("書籍刪除失敗！", "error");
+            }
+        }
+    };
+    xhr.send(jsonString);
+}
+
+function addToCart() {
+    let rowNum, uuid;
+    const data = [];
+    const checkboxes = document.querySelectorAll("#choiceCheckbox");
+
+    checkboxes.forEach(function (checkbox) {
+        if (checkbox.checked) {
+            let value = checkbox.value;
+            rowNum = value.substring(36)
+            uuid = value.substring(0, 36);
+            data.push({
+                rowNum: rowNum,
+                uuid: uuid,
+            });
+        }
+    });
+
+    const jsonData = {
+        objects: data,
+    };
+
+    const jsonString = JSON.stringify(jsonData);
+
+    const xhr = new XMLHttpRequest();
+    const url = "project/orders";
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 ) {
+            if (xhr.status === 200) {
+                showResultMessage("購物車新增成功！", "success");
+            } else {
+                showResultMessage("購物車新增失敗！", "error");
             }
         }
     };
