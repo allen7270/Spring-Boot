@@ -1,4 +1,4 @@
-package com.springboot.project.order.model.bo;
+package com.springboot.project.orders.model.bo;
 
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.springboot.project.orders.model.mapper.OrdersMapper">
+    <select id="getAll" resultType="com.springboot.project.orders.data.OrdersData">
+        SELECT od.id 'uuid',
+               bk.book,
+               bk.author,
+               od.price,
+               od.count,
+               bk.content
+        FROM ORDERS od
+        INNER JOIN BOOK bk ON bk.id = od.bookId AND bk.isCancel = false
+        WHERE od.isCancel = false
+          AND od.orderName = #{bean.orderName}
+        <if test="bean.book != null and bean.book != ''">
+            AND bk.book = #{bean.book}
+        </if>
+        <if test="bean.author != null and bean.author != ''">
+            AND bk.author = #{bean.author}
+        </if>
+        <if test="bean.price != null and bean.price != ''">
+            AND od.price &gt;= #{bean.price}
+        </if>
+        <if test="bean.count != null and bean.count != ''">
+            AND od.count &gt;= #{bean.count}
+        </if>
+        <if test="bean.language != null and bean.language != ''">
+            AND bk.language = #{bean.language}
+        </if>
+        <if test="bean.content != null and bean.content != ''">
+            AND bk.content like CONCAT('%', #{bean.content}, '%')
+        </if>
+    </select>
+    <select id="getById" resultType="com.springboot.project.orders.data.OrdersData">
+        SELECT od.id 'uuid',
+               bk.book,
+               bk.author,
+               od.price,
+               od.count,
+               bk.content,
+               bk.language,
+               bk.content
+        FROM ORDERS od
+        INNER JOIN BOOK bk ON bk.id = od.bookId AND bk.isCancel = false
+        WHERE od.isCancel = false
+        AND od.id = #{id}
+    </select>
+</mapper>

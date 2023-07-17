@@ -1,4 +1,4 @@
-package com.springboot.project.order.service.impl;
+package com.springboot.project.orders.service.impl;
 
 import com.springboot.common.data.BatchData;
 import com.springboot.common.data.RecordData;
@@ -6,9 +6,9 @@ import com.springboot.common.util.RestfulBean;
 import com.springboot.common.util.ResultBean;
 import com.springboot.project.book.model.bo.Book;
 import com.springboot.project.book.model.dao.BookDao;
-import com.springboot.project.order.model.bo.Orders;
-import com.springboot.project.order.model.dao.OrdersDao;
-import com.springboot.project.order.service.OrdersService;
+import com.springboot.project.orders.model.bo.Orders;
+import com.springboot.project.orders.model.dao.OrdersDao;
+import com.springboot.project.orders.service.OrdersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,12 +21,12 @@ import java.util.stream.Collectors;
 @Service
 public class OrdersServiceImpl implements OrdersService {
     @Autowired
-    private OrdersDao orderDao;
+    private OrdersDao ordersDao;
     @Autowired
     private BookDao bookDao;
 
     @Override
-    public RestfulBean<Object> addOrder(BatchData data, String userName) {
+    public RestfulBean<Object> addOrders(BatchData data, String userName) {
         RestfulBean<Object> restful = new ResultBean<>();
         List<RecordData> recordList = data.getObjects();
         List<String> uuids = recordList.stream().map(RecordData::getUuid).collect(Collectors.toList());
@@ -55,10 +55,34 @@ public class OrdersServiceImpl implements OrdersService {
                 book.setCount(book.getCount().subtract(BigDecimal.ONE));
                 this.bookDao.save(book);
             }
-            this.orderDao.saveAll(orderList);
+            this.ordersDao.saveAll(orderList);
         }
         restful.setStatus(200);
         restful.setMessage("新增成功");
         return restful;
     }
+
+    @Override
+    public RestfulBean<Object> deleteOrders(BatchData data, String userName) {
+        RestfulBean<Object> restful = new ResultBean<>();
+        List<RecordData> recordList = data.getObjects();
+        List<String> uuids = recordList.stream().map(RecordData::getUuid).collect(Collectors.toList());
+        List<Orders> orders = this.ordersDao.findByIdInAndIsCancelFalse(uuids);
+        if (orders.isEmpty()) {
+            restful.setStatus(400);
+            restful.setMessage("資料不存在");
+            return restful;
+        } else {
+            orders.forEach(obj -> {
+                obj.setIsCancel(true);
+                obj.setCancelDate(new Date());
+                obj.setCancelId(userName);
+            });
+            this.ordersDao.saveAll(orders);
+        }
+        restful.setStatus(200);
+        restful.setMessage("刪除成功");
+        return restful;
+    }
+
 }

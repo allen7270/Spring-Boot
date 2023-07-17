@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>訂單</title>
+    <link rel="stylesheet" type="text/css" href="css/queryBook.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+<nav class="nav">
+    <ul>
+        <li><a href="home.html">首頁</a></li>
+        <li><a href="addBook.html">新增書籍</a></li>
+        <li><a href="#">聯繫我們</a></li>
+        <li id="userName" style="margin-left: auto"></li>
+        <li><a id="logoutButton">登出</a></li>
+    </ul>
+</nav>
+
+<div class="search-container search-box">
+    <input type="text" id="searchBook" placeholder="書名">
+    <input type="text" id="searchAuthor" placeholder="作者">
+    <input type="text" id="searchPrice" placeholder="單價(以上)">
+    <input type="text" id="searchCount" placeholder="數量(以上)">
+    <input type="text" id="searchLanguage" placeholder="語言">
+    <input type="text" id="searchContent" placeholder="內容">
+    <button id="searchButton" onclick="fetchData(1,5)" >搜尋</button>
+    <button style="margin-left: 5px" id="searchClear" onclick="location.reload()" >清除</button>
+</div>
+
+<div class="table-container">
+    <div style="margin-bottom: 5px">
+        目前已勾選<a id="deleteCount" style="color: #45a049; margin-left: 10px; margin-right: 10px">0</a>筆
+        <button id="trashButton" class="button" onclick="deleteBooks()"><i class="fas fa-trash"></i></button>
+    </div>
+
+    <div class="button-container">
+        每頁筆數
+        <button id="submitButton5" class="button" onclick="submitForm(5)">5</button>
+        <button id="submitButton10" class="button" onclick="submitForm(10)">10</button>
+        <button id="submitButton20" class="button" onclick="submitForm(20)">20</button>
+        <button id="submitButton50" class="button" onclick="submitForm(50)">50</button>
+        <a id="totalPageData" style="color: #45a049"></a>
+    </div>
+
+    <div class="pagination-container" id="paginationButtons"></div>
+
+    <table id="tableData">
+        <thead>
+        <tr>
+            <th class="icon-column"></th>
+            <th class="no-column">NO.</th>
+            <th>書名</th>
+            <th>作者</th>
+            <th class="price-column">單價</th>
+            <th class="count-column">數量</th>
+        </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+<div class="popupContainer" id="popupContainer" style="display: none;">
+    <div class="popupContent" id="popupContent">
+        <h2>書籍明細</h2>
+        <div class="grid-container">
+            <div class="form-group">
+                <p>書名</p>
+                <input class="readonly-input" id="book" style="width: 400px">
+            </div>
+
+            <div class="form-group">
+                <p>作者</p>
+                <input class="readonly-input" id="author">
+            </div>
+
+            <div class="form-group">
+                <p>單價</p>
+                <input class="readonly-input" id="price">
+            </div>
+
+            <div class="form-group">
+                <p>數量</p>
+                <input id="count">
+            </div>
+
+            <div class="form-group">
+                <p>語言</p>
+                <input class="readonly-input" id="language">
+            </div>
+
+            <div class="form-group">
+                <p>內容簡介</p>
+                <textarea class="readonly-input" id="content" name="content" rows="4" required></textarea>
+            </div>
+        </div>
+        <button id="closeButton"><i class="fas fa-times"></i></button>
+    </div>
+</div>
+
+<div class="modal-overlay" id="modalOverlay">
+    <div class="modal-content">
+        <div id="modalMessage" class="result-message"></div>
+        <button onclick="closeModal()">關閉</button>
+    </div>
+</div>
+
+<script src="js/showMsg.js"></script>
+<script src="js/userOrderInfo.js"></script>
+<script src="js/common.js"></script>
+
+</body>
+</html>
