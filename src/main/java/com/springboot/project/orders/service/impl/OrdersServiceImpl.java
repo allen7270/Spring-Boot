@@ -16,6 +16,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -73,10 +74,18 @@ public class OrdersServiceImpl implements OrdersService {
             restful.setMessage("資料不存在");
             return restful;
         } else {
-            orders.forEach(obj -> {
-                obj.setIsCancel(true);
-                obj.setCancelDate(new Date());
-                obj.setCancelId(userName);
+            orders.forEach(order -> {
+                order.setIsCancel(true);
+                order.setCancelDate(new Date());
+                order.setCancelId(userName);
+
+                Optional<Book> bookData = this.bookDao.findByIdAndIsCancelFalse(order.getBookId());
+                if (bookData.isPresent()) {
+                    Book book = bookData.get();
+                    book.setCount(book.getCount().add(order.getCount()));
+                    this.bookDao.save(book);
+                }
+
             });
             this.ordersDao.saveAll(orders);
         }

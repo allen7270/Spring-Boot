@@ -7,6 +7,7 @@ import com.springboot.common.util.RestfulBean;
 import com.springboot.common.util.ResultPage;
 import com.springboot.project.book.data.BookData;
 import com.springboot.project.book.model.bo.Book;
+import com.springboot.project.book.model.dao.BookDao;
 import com.springboot.project.orders.data.OrdersData;
 import com.springboot.project.orders.data.OrdersData.*;
 import com.springboot.project.orders.model.bo.Orders;
@@ -25,6 +26,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,6 +40,8 @@ public class OrdersController extends BaseController {
     private OrdersMapper ordersMapper;
     @Autowired
     private OrdersDao ordersDao;
+    @Autowired
+    private BookDao bookDao;
 
     @Operation(summary = "新增訂單")
     @PostMapping
@@ -99,9 +103,24 @@ public class OrdersController extends BaseController {
         try {
             Optional<Orders> op = this.ordersDao.findByIdAndIsCancelFalse(uuid);
             if (op.isPresent()) {
-                Orders obj = op.get();
-                obj.setCount(bean.getCount());
-                this.ordersDao.save(obj);
+                Orders orders = op.get();
+
+                BigDecimal adjustCount = bean.getCount().subtract(orders.getCount());
+
+                Optional<Book> bookData = this.bookDao.findByIdAndIsCancelFalse(orders.getBookId());
+                Book book = bookData.get();
+
+                orders.setCount(bean.getCount());
+
+                if (orders.getCount().compareTo(book.getCount().add(orders.getCount())) == 1) {
+                    return error(ErrorCode.PARAMETER_OUT_OF_RANGE, "庫存不足");
+                }
+
+                this.ordersDao.save(orders);
+
+                book.setCount(book.getCount().subtract(adjustCount));
+                this.bookDao.save(book);
+
                 return success("更新完成");
             } else {
                 return error(ErrorCode.DATA_NOT_EXIST);
