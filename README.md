@@ -23,7 +23,7 @@
 * 透過 **`Spring Security`** 管理授權`api, JS...`
 
 ### 附錄[](https://)
-<img width="1280" alt="截圖 2023-07-16 11 13 55" src="https://github.com/allen7270/spring-boot/assets/67735987/04c8518c-08b4-4fa4-8f56-8aac584f35fa">
+<img width="1280" alt="截圖 2023-07-17 16 39 13" src="https://github.com/allen7270/spring-boot/assets/67735987/ecbbf2d6-48c2-4548-b9fd-6f8fff5a76c1">
 
 * 圖B
 
