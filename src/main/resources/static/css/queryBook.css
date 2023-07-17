@@ -91,6 +91,10 @@ td:first-child {
     text-align: right;
     width: 35px;
 }
+.totalPrice-column {
+    text-align: right;
+    width: 40px;
+}
 
 td:nth-child(1) {
     text-align: center;
@@ -105,6 +109,10 @@ td:nth-child(5) {
 }
 
 td:nth-child(6) {
+    text-align: right;
+}
+
+td:nth-child(7) {
     text-align: right;
 }
 

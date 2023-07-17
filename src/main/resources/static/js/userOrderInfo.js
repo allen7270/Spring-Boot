@@ -42,6 +42,7 @@ function fetchData(pageNumber, pageSize) {
                 const authorCell = document.createElement("td");
                 const priceCell = document.createElement("td");
                 const countCell = document.createElement("td");
+                const totalPriceCell = document.createElement("td");
 
                 iconCheckboxCell.className = "icon-checkbox-cell";
 
@@ -80,6 +81,8 @@ function fetchData(pageNumber, pageSize) {
                 authorCell.textContent = item.author;
                 priceCell.textContent = item.price;
                 countCell.textContent = item.count;
+                let totalPrice = item.price * item.count;
+                totalPriceCell.textContent = totalPrice;
 
                 row.appendChild(iconCheckboxCell);
                 row.appendChild(indexCell);
@@ -87,6 +90,7 @@ function fetchData(pageNumber, pageSize) {
                 row.appendChild(authorCell);
                 row.appendChild(priceCell);
                 row.appendChild(countCell);
+                row.appendChild(totalPriceCell);
 
                 tableBody.appendChild(row);
 
