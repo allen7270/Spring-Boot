@@ -1,3 +1,5 @@
+window.onload = websocketInit();
+
 function addBook() {
     const book = document.getElementById("book").value;
     const author = document.getElementById("author").value;

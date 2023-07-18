@@ -26,9 +26,10 @@ public class WebSocketController {
         StringBuilder msg = new StringBuilder();
         Optional<OrdersData> orders = this.ordersMapper.getById(js);
         OrdersData orderData = orders.get();
-        msg.append(orderData.getOrderName());
-        msg.append("於").append(new Date());
-        msg.append("訂購'").append(orderData.getBook()).append("'乙本！");
+        msg.append("您好，\n");
+        msg.append("[").append(orderData.getOrderName()).append("] ");
+        msg.append("已於").append(new Date());
+        msg.append("訂購 [").append(orderData.getBook()).append("] 乙本！");
         return msg.toString();
     }
 }

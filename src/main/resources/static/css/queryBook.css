@@ -335,3 +335,39 @@ td:nth-child(7) {
 #sendButton:hover {
     background-color: #45a049;
 }
+
+
+/*websocket*/
+
+.notification-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+}
+
+.notification-message {
+    background-color: #f1f1f1;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    animation: slideIn 0.5s, fadeOut 0.5s 2.5s;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
