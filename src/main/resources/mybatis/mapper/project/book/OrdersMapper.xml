@@ -46,4 +46,12 @@
         WHERE od.isCancel = false
         AND od.id = #{id}
     </select>
+
+    <select id="getByBookIdAndOrderName" resultType="com.springboot.project.orders.model.bo.Orders">
+        SELECT *
+        FROM ORDERS od
+        WHERE od.isCancel = false
+          AND od.bookId = #{id}
+          AND od.orderName = #{orderName}
+    </select>
 </mapper>
