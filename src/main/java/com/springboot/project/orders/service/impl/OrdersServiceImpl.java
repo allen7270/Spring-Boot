@@ -33,6 +33,7 @@ public class OrdersServiceImpl implements OrdersService {
         List<String> uuids = recordList.stream().map(RecordData::getUuid).collect(Collectors.toList());
         List<Book> books = this.bookDao.findByIdInAndIsCancelFalse(uuids);
         List<Orders> orderList = new ArrayList<>();
+        List<Orders> newOrderList = new ArrayList<>();
         if (books.isEmpty()) {
             restful.setStatus(400);
             restful.setMessage("資料不存在");
@@ -45,7 +46,9 @@ public class OrdersServiceImpl implements OrdersService {
                 order.setOrderDate(new Date());
                 order.setCount(BigDecimal.ONE);
                 order.setPrice(book.getPrice());
-                orderList.add(order);
+//                orderList.add(order);
+                order = this.ordersDao.save(order);
+                newOrderList.add(order);
 
                 if (book.getCount().compareTo(BigDecimal.ONE) == -1) {
                     restful.setStatus(400);
@@ -56,10 +59,11 @@ public class OrdersServiceImpl implements OrdersService {
                 book.setCount(book.getCount().subtract(BigDecimal.ONE));
                 this.bookDao.save(book);
             }
-            this.ordersDao.saveAll(orderList);
+//            this.ordersDao.saveAll(orderList);
         }
         restful.setStatus(200);
         restful.setMessage("新增成功");
+        restful.setObject(newOrderList);
         return restful;
     }
 

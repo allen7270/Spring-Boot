@@ -21,6 +21,8 @@ public class OrdersData extends SuperBean {
     private String language;
     @Schema(title = "內容")
     private String content;
+    @Schema(title = "訂購者")
+    private String orderName;
 
     @Data
     public static class queryOrdersData extends QueryPageBean {

@@ -39,7 +39,8 @@
                od.count,
                bk.content,
                bk.language,
-               bk.content
+               bk.content,
+               od.orderName
         FROM ORDERS od
         INNER JOIN BOOK bk ON bk.id = od.bookId AND bk.isCancel = false
         WHERE od.isCancel = false

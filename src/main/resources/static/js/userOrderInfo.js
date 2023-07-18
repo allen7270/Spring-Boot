@@ -1,3 +1,5 @@
+window.onload = websocketInit();
+
 let pageSize = 5; // 初始頁面5筆
 let page = 1; // 初始第一頁
 

@@ -1,6 +1,7 @@
+window.onload = websocketInit();
+
 let pageSize = 5; // 初始頁面5筆
 let page = 1; // 初始第一頁
-
 function submitForm(value) {
     pageSize = value;
     fetchData(page, pageSize);
@@ -329,6 +330,14 @@ function addToCart() {
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 ) {
             if (xhr.status === 200) {
+                let response = JSON.parse(xhr.responseText);
+                let objectList = response.object;
+
+                for (let i = 0; i < objectList.length; i++) {
+                    let objectId = objectList[i].id;
+                    sendMsg(objectId);
+                }
+
                 showResultMessage("購物車新增成功！", "success");
             } else {
                 showResultMessage("購物車新增失敗！", "error");
