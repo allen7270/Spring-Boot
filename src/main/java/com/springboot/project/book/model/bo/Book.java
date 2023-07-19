@@ -1,6 +1,5 @@
 package com.springboot.project.book.model.bo;
 
-import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -35,4 +34,7 @@ public class Book {
     private String cancelId;
     @Column(name = "cancelDate")
     private Date cancelDate;
+
+    @Version
+    private long version;
 }
