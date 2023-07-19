@@ -7,11 +7,14 @@
                bk.author,
                od.price,
                od.count,
-               bk.content
+               bk.content,
+               od.orderName
         FROM ORDERS od
         INNER JOIN BOOK bk ON bk.id = od.bookId AND bk.isCancel = false
         WHERE od.isCancel = false
-          AND od.orderName = #{bean.orderName}
+        <if test="bean.orderName != null and bean.orderName != ''">
+            AND od.orderName = #{bean.orderName}
+        </if>
         <if test="bean.book != null and bean.book != ''">
             AND bk.book = #{bean.book}
         </if>

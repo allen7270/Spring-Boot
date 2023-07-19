@@ -33,4 +33,18 @@ public class RoleController extends BaseController {
             return error(ErrorCode.DATA_NOT_EXIST, "資料不存在或已註銷");
         }
     }
+
+    @Operation(summary = "取得角色名稱")
+    @GetMapping()
+    public ResponseEntity<RestfulBean<Object>> getRole() {
+        String userName = this.userName();
+        Optional<RoleData> role = this.roleMapper.getRoleByUserName(userName);
+        if (role.isPresent()) {
+            RoleData roleData = role.get();
+            return success(roleData);
+        } else {
+            return error(ErrorCode.DATA_NOT_EXIST, "資料不存在或已註銷");
+        }
+    }
+
 }

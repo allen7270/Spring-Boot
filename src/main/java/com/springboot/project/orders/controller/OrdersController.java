@@ -5,7 +5,6 @@ import com.github.pagehelper.page.PageMethod;
 import com.springboot.common.data.BatchData;
 import com.springboot.common.util.RestfulBean;
 import com.springboot.common.util.ResultPage;
-import com.springboot.project.book.data.BookData;
 import com.springboot.project.book.model.bo.Book;
 import com.springboot.project.book.model.dao.BookDao;
 import com.springboot.project.orders.data.OrdersData;
@@ -14,12 +13,13 @@ import com.springboot.project.orders.model.bo.Orders;
 import com.springboot.project.orders.model.dao.OrdersDao;
 import com.springboot.project.orders.model.mapper.OrdersMapper;
 import com.springboot.project.orders.service.OrdersService;
+import com.springboot.project.role.data.RoleData;
+import com.springboot.project.role.model.mapper.RoleMapper;
 import com.springboot.web.util.BaseController;
 import com.springboot.web.util.ErrorCode;
 import com.springboot.web.util.PageUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -42,6 +42,8 @@ public class OrdersController extends BaseController {
     private OrdersDao ordersDao;
     @Autowired
     private BookDao bookDao;
+    @Autowired
+    private RoleMapper roleMapper;
 
     @Operation(summary = "新增訂單")
     @PostMapping
@@ -61,7 +63,10 @@ public class OrdersController extends BaseController {
     @Operation(summary = "查詢訂單", description = "list")
     @GetMapping
     public ResponseEntity<ResultPage<List<OrdersData>>> getAll(queryOrdersData bean) {
-        bean.setOrderName(this.userName());
+        Optional<RoleData> roleData = this.roleMapper.getRoleByUserName(this.userName());
+        RoleData role = roleData.get();
+        bean.setOrderName(role.getRoleName().equals("admin") ? "" : this.userName());
+
         PageMethod.startPage(bean.getCurNum(), bean.getSize());
         Page<OrdersData> pageInfo = (Page<OrdersData>) this.ordersMapper.getAll(bean);
         ResultPage<List<OrdersData>> result = new ResultPage<>();

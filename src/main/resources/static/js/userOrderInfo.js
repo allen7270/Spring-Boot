@@ -12,8 +12,17 @@ function submitPage(value) {
     page = value;
     fetchData(page, pageSize);
 }
-
+let roleName;
 function fetchData(pageNumber, pageSize) {
+    fetch('project/role')
+        .then(response => response.json())
+        .then(data => {
+            roleName = data.object.roleName;
+        })
+        .catch(error => {
+            console.log(error);
+        });
+
     let checkedCount = 0;
 
     const searchBook = document.getElementById("searchBook").value;
@@ -45,6 +54,7 @@ function fetchData(pageNumber, pageSize) {
                 const priceCell = document.createElement("td");
                 const countCell = document.createElement("td");
                 const totalPriceCell = document.createElement("td");
+
 
                 iconCheckboxCell.className = "icon-checkbox-cell";
 
@@ -88,6 +98,13 @@ function fetchData(pageNumber, pageSize) {
 
                 row.appendChild(iconCheckboxCell);
                 row.appendChild(indexCell);
+                if (roleName === 'admin') {
+                    const orderNameCell = document.createElement("td");
+                    orderNameCell.textContent = item.orderName;
+                    row.appendChild(orderNameCell);
+                    thOrderName = document.getElementById('orderName');
+                    thOrderName.removeAttribute('hidden');
+                }
                 row.appendChild(bookCell);
                 row.appendChild(authorCell);
                 row.appendChild(priceCell);
