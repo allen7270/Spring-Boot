@@ -1,4 +1,4 @@
-package com.springboot.project.user.model.bo;
+package com.springboot.project.role.model.bo;
 
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
@@ -7,17 +7,12 @@ import javax.persistence.*;
 
 @Data
 @Entity // create table
-@Table(name = "user")
-public class User {
+@Table(name = "role")
+public class Role {
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2", parameters = {@org.hibernate.annotations.Parameter(name = "uuid_gen_strategy_class", value = "org.hibernate.id.uuid.CustomVersionOneStrategy")})
     private String id;
-    @Column(name = "username")
-    private String username;
-    @Column(name = "password")
-    private String password;
-
-    @Column(name = "roleId")
-    private String roleId;
+    @Column(name = "roleName")
+    private String roleName;
 }

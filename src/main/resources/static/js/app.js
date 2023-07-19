@@ -42,14 +42,22 @@ function websocketInit() {
     const socket = new SockJS('/websocket');
     stompClient = Stomp.over(socket);
 
-    stompClient.connect({}, function() {
+    stompClient.connect({}, function(frame) {
         console.log('WebSocket連接成功！');
 
-        stompClient.subscribe('/topic/B2F', function(message) {
-            let response = message.body;
-            showNotification(response);
-        });
-
+        const username = frame.headers['user-name'];
+        const url = `project/role/${username}`;
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                const roleName = data.object.roleName;
+                if (roleName === 'admin') {
+                    stompClient.subscribe('/topic/B2F', function(message) {
+                        let response = message.body;
+                        showNotification(response);
+                    });
+                }
+            });
     });
 }
 
