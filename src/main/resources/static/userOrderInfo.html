@@ -108,6 +108,18 @@
 <div id="popupPersonalContainer">
     <div id="popupPersonalContent">
         <h2>人事資料</h2>
+
+        <div class="button-container">
+            每頁筆數
+            <button id="submitPersonalButton5" class="button" onclick="submitPersonalForm(5)">5</button>
+            <button id="submitPersonalButton10" class="button" onclick="submitPersonalForm(10)">10</button>
+            <button id="submitPersonalButton20" class="button" onclick="submitPersonalForm(20)">20</button>
+            <button id="submitPersonalButton50" class="button" onclick="submitPersonalForm(50)">50</button>
+            <a id="totalPagePersonalData" style="color: #45a049"></a>
+        </div>
+
+        <div class="pagination-container" id="paginationPersonalButtons"></div>
+
         <table id="personnelTable" style="width: 100%;">
             <thead>
             <tr>
