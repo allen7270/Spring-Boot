@@ -10,6 +10,8 @@ function submitPersonalPage(value) {
     personalPage = value;
     viewPersonnel(personalPage, personalPageSize);
 }
+
+const tableData = [];
 function viewPersonnel() {
     const popupContainer = document.getElementById('popupPersonalContainer');
     const personnelTableBody = document.querySelector('#personnelTable tbody');
@@ -23,6 +25,8 @@ function viewPersonnel() {
         .then(response => response.json())
         .then(data => {
             data.object.forEach((item, index) => {
+                let uuid = item.uuid;
+
                 const row = document.createElement("tr");
                 const indexCell = document.createElement("td");
                 const userNameCell = document.createElement("td");
@@ -30,7 +34,19 @@ function viewPersonnel() {
 
                 indexCell.textContent = index + 1;
                 userNameCell.textContent = item.userName;
-                roleNameCell.textContent = item.roleName;
+                // roleNameCell.textContent = item.roleName;
+
+                const selectRole = document.createElement("select");
+                const roleOptions = ["admin", "customer"];
+
+                roleOptions.forEach(option => {
+                    const roleOption = document.createElement("option");
+                    roleOption.textContent = option;
+                    selectRole.appendChild(roleOption);
+                });
+
+                selectRole.value = item.roleName;
+                roleNameCell.appendChild(selectRole);
 
                 row.appendChild(indexCell);
                 row.appendChild(userNameCell);
@@ -47,6 +63,15 @@ function viewPersonnel() {
 
                 const totalPagePersonalData = document.getElementById('totalPagePersonalData');
                 totalPagePersonalData.innerText = `| 共${totalElements}筆，第${curNum}頁，共${totalPages}頁`;
+
+                selectRole.addEventListener("change", function () {
+                    const rowData = {
+                        uuid: uuid,
+                        userName: item.userName,
+                        roleName: selectRole.value
+                    };
+                    tableData.push(rowData);
+                });
 
             });
         });
@@ -71,4 +96,27 @@ function addPersonalButtons(totalPages) {
         };
         paginationContainer.appendChild(button);
     }
+}
+
+function editPersonnel() {
+    const jsonData = {
+        objects: tableData,
+    };
+
+    const jsonString = JSON.stringify(jsonData);
+
+    const xhr = new XMLHttpRequest();
+    const url = `project/role`;
+    xhr.open("PUT", url, true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 ) {
+            if (xhr.status === 200) {
+                showResultMessage("修改成功！", "success");
+            } else {
+                showResultMessage("修改失敗！", "error");
+            }
+        }
+    };
+    xhr.send(jsonString);
 }

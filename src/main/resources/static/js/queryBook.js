@@ -11,8 +11,18 @@ function submitPage(value) {
     page = value;
     fetchData(page, pageSize);
 }
-
+let roleName;
 function fetchData(pageNumber, pageSize) {
+
+    fetch('project/role/getRoleName')
+        .then(response => response.json())
+        .then(data => {
+            roleName = data.object.roleName;
+        })
+        .catch(error => {
+            console.log(error);
+        });
+
     let checkedCount = 0;
 
     const searchBook = document.getElementById("searchBook").value;
@@ -74,7 +84,9 @@ function fetchData(pageNumber, pageSize) {
                 const editIcon = document.createElement("i");
                 editIcon.className = "fas fa-pencil-alt";
                 editButton.appendChild(editIcon);
-                iconCheckboxCell.appendChild(editButton);
+                if (roleName === 'admin') {
+                    iconCheckboxCell.appendChild(editButton);
+                }
 
                 indexCell.textContent = index + 1;
                 bookCell.textContent = item.book;
@@ -188,6 +200,8 @@ function openPopupEdit(uuid) {
     const popupContainer = document.getElementById("popupContainer");
     const popupContent = document.getElementById("popupContent");
     const closeButton = document.getElementById("closeButton");
+    const detailTitle = document.getElementById("detailTitle");
+    detailTitle.innerText = '修改書籍明細';
 
     const url = `project/book/${uuid}`;
 

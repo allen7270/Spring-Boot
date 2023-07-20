@@ -33,6 +33,7 @@
 </div>
 
 <div class="table-container">
+    <h2 id="title"></h2>
     <div style="margin-bottom: 5px">
         目前已勾選<a id="deleteCount" style="color: #45a049; margin-left: 10px; margin-right: 10px">0</a>筆
         <button id="trashButton" class="button" onclick="deleteBooks()"><i class="fas fa-trash"></i></button>
@@ -69,7 +70,7 @@
 
 <div class="popupContainer" id="popupContainer" style="display: none;">
     <div class="popupContent" id="popupContent">
-        <h2>書籍明細</h2>
+        <h2 id="detailTitle">訂單明細</h2>
         <div class="grid-container">
             <div class="form-group">
                 <p>書名</p>
@@ -132,6 +133,10 @@
             </tbody>
         </table>
         <button id="closePersonalButton"><i class="fas fa-times"></i></button>
+
+        <div class="pagination-container" style="margin-top: 5px; margin-bottom: 0px">
+            <a class="button" onclick="editPersonnel()">修改</a>
+        </div>
     </div>
 </div>
 

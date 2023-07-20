@@ -46,6 +46,7 @@ function fetchData(pageNumber, pageSize) {
             data.object.forEach((item, index) => {
                 let uuid = item.uuid;
 
+                const title = document.getElementById("title");
                 const row = document.createElement("tr");
                 const iconCheckboxCell = document.createElement("td");
                 const indexCell = document.createElement("td");
@@ -55,6 +56,7 @@ function fetchData(pageNumber, pageSize) {
                 const countCell = document.createElement("td");
                 const totalPriceCell = document.createElement("td");
 
+                title.innerText = '訂單查詢';
 
                 iconCheckboxCell.className = "icon-checkbox-cell";
 
@@ -99,6 +101,7 @@ function fetchData(pageNumber, pageSize) {
                 row.appendChild(iconCheckboxCell);
                 row.appendChild(indexCell);
                 if (roleName === 'admin') {
+                    title.innerText = '客戶訂單查詢';
                     const orderNameCell = document.createElement("td");
                     orderNameCell.textContent = item.orderName;
                     row.appendChild(orderNameCell);
@@ -212,6 +215,8 @@ function openPopupEdit(uuid) {
     const popupContainer = document.getElementById("popupContainer");
     const popupContent = document.getElementById("popupContent");
     const closeButton = document.getElementById("closeButton");
+    const detailTitle = document.getElementById("detailTitle");
+    detailTitle.innerText = '修改訂單明細';
 
     const url = `project/orders/${uuid}`;
 

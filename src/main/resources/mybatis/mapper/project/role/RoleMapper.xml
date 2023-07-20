@@ -9,7 +9,8 @@
     </select>
 
     <select id="getAll" resultType="com.springboot.project.role.data.RoleData">
-        SELECT R.roleName,
+        SELECT U.id 'uuid',
+               R.roleName,
                U.username
         FROM role R
          LEFT JOIN user U ON U.roleId = R.id
