@@ -16,6 +16,7 @@ function viewPersonnel() {
     const popupContainer = document.getElementById('popupPersonalContainer');
     const personnelTableBody = document.querySelector('#personnelTable tbody');
     const closeButton = document.getElementById("closePersonalButton");
+    const editPersonnel = document.getElementById("editPersonnel");
 
     personnelTableBody.innerHTML = '';
 
@@ -65,6 +66,7 @@ function viewPersonnel() {
                 totalPagePersonalData.innerText = `| 共${totalElements}筆，第${curNum}頁，共${totalPages}頁`;
 
                 selectRole.addEventListener("change", function () {
+                    editPersonnel.removeAttribute("hidden");
                     const rowData = {
                         uuid: uuid,
                         userName: item.userName,
@@ -80,6 +82,7 @@ function viewPersonnel() {
 
     closeButton.addEventListener("click", function() {
         popupContainer.style.display = "none";
+        location.reload();
     });
 }
 
