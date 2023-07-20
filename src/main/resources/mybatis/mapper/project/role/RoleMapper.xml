@@ -7,4 +7,11 @@
         LEFT JOIN user U ON U.roleId = R.id
         WHERE U.username = #{userName}
     </select>
+
+    <select id="getAll" resultType="com.springboot.project.role.data.RoleData">
+        SELECT R.roleName,
+               U.username
+        FROM role R
+         LEFT JOIN user U ON U.roleId = R.id
+    </select>
 </mapper>

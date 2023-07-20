@@ -36,6 +36,7 @@
     <div style="margin-bottom: 5px">
         目前已勾選<a id="deleteCount" style="color: #45a049; margin-left: 10px; margin-right: 10px">0</a>筆
         <button id="trashButton" class="button" onclick="deleteBooks()"><i class="fas fa-trash"></i></button>
+        <button id="personnelButton" class="button" onclick="viewPersonnel()" style="margin-top: 3px;float: right; display: none;"><i class="fas fa-user"></i></button>
     </div>
 
     <div class="button-container">
@@ -104,6 +105,24 @@
     </div>
 </div>
 
+<div id="popupPersonalContainer">
+    <div id="popupPersonalContent">
+        <h2>人事資料</h2>
+        <table id="personnelTable" style="width: 100%;">
+            <thead>
+            <tr>
+                <th>NO.</th>
+                <th>姓名</th>
+                <th>職稱</th>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <button id="closePersonalButton"><i class="fas fa-times"></i></button>
+    </div>
+</div>
+
 <div class="modal-overlay" id="modalOverlay">
     <div class="modal-content">
         <div id="modalMessage" class="result-message"></div>
@@ -113,8 +132,8 @@
 
 <script src="js/common.js"></script>
 <script src="js/showMsg.js"></script>
+<script src="js/viewPersonnel.js"></script>
 <script src="js/userOrderInfo.js"></script>
-
 
 </body>
 </html>

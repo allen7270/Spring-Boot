@@ -14,7 +14,7 @@ function submitPage(value) {
 }
 let roleName;
 function fetchData(pageNumber, pageSize) {
-    fetch('project/role')
+    fetch('project/role/getRoleName')
         .then(response => response.json())
         .then(data => {
             roleName = data.object.roleName;
@@ -104,6 +104,8 @@ function fetchData(pageNumber, pageSize) {
                     row.appendChild(orderNameCell);
                     thOrderName = document.getElementById('orderName');
                     thOrderName.removeAttribute('hidden');
+                    personalBtn = document.getElementById('personnelButton');
+                    personalBtn.style.display = 'block';
                 }
                 row.appendChild(bookCell);
                 row.appendChild(authorCell);
